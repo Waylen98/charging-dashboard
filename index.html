@@ -6,7 +6,7 @@
 <title>充能有数 - 海狮05EV</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f0f4f3;--card:#fff;--primary:#0d9488;--primary-light:#e6f7f5;--primary-dark:#0f766e;--text:#1e293b;--text2:#64748b;--text3:#94a3b8;--border:#e8edec;--green:#0d9488;--orange:#f59e0b;--red:#ef4444;--blue:#3b82f6}
+:root{--bg:#f0f4f3;--card:#fff;--primary:#0d9488;--primary-light:#e6f7f5;--primary-dark:#0f766e;--text:#1e293b;--text2:#64748b;--text3:#94a3b8;--border:#e8edec;--green:#0d9488;--orange:#f59e0b;--red:#ef4444;--blue:#3b82f6;--purple:#8b5cf6;--coupon-bg:#fef3c7;--coupon-text:#b45309}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;padding-bottom:24px;-webkit-font-smoothing:antialiased}
 .top-nav{background:var(--bg);padding:12px 16px 0;display:flex;align-items:center;gap:10px}
 .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:600}
@@ -22,12 +22,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .insight-item .val{font-size:18px;font-weight:700;line-height:1.3}
 .insight-item .val .unit{font-size:12px;font-weight:400;color:var(--text2)}
 .insight-item .lbl{font-size:10px;color:var(--text3);margin-top:2px}
-.val.green{color:var(--green)}.val.orange{color:var(--orange)}.val.red{color:var(--red)}.val.muted{color:var(--text3)}
+.val.green{color:var(--green)}.val.orange{color:var(--orange)}.val.red{color:var(--red)}.val.purple{color:var(--purple)}.val.muted{color:var(--text3)}
 .trend-section{margin:0 12px;background:var(--card);border-radius:12px;padding:14px;margin-top:10px}
 .trend-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .trend-header .title{font-size:12px;font-weight:600;color:var(--text2)}
 .trend-header .unit{font-size:10px;color:var(--text3)}
 .trend-chart{width:100%;height:160px} .trend-chart svg{width:100%;height:100%}
+.trend-chart-sm{width:100%;height:120px} .trend-chart-sm svg{width:100%;height:100%}
 .cal-section{margin:0 12px;background:var(--card);border-radius:12px;padding:14px;margin-top:10px}
 .cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .cal-header .title{font-size:12px;font-weight:600;color:var(--text)}
@@ -42,6 +43,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .latest-card .station{font-size:14px;font-weight:600;margin-bottom:6px}
 .latest-card .stats{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--text2)}
 .latest-card .stats b{color:var(--text)}
+.coupon-badge{display:inline-block;background:var(--coupon-bg);color:var(--coupon-text);padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;vertical-align:middle}
+.save-total{background:linear-gradient(135deg,#fef3c7,#fffbeb);border:1px solid #fde68a;border-radius:10px;padding:10px 14px;margin:8px 12px 0;font-size:12px;display:flex;align-items:center;gap:8px}
+.save-total .save-icon{font-size:18px}.save-total .save-amount{font-weight:700;color:var(--coupon-text);font-size:16px}
+.ranking-item{display:flex;align-items:center;gap:8px;padding:6px 12px;border-bottom:1px solid var(--border);font-size:11px}
+.ranking-item:last-child{border-bottom:none}
+.ranking-item .rank{font-size:16px;font-weight:700;min-width:24px;text-align:center}
+.ranking-item .rank.gold{color:var(--orange)}.ranking-item .rank.silver{color:var(--text3)}.ranking-item .rank.bronze{color:#d97706}
+.ranking-item .info{flex:1;min-width:0}
+.ranking-item .info .eff{font-weight:600;font-size:13px}
+.ranking-item .info .sub{font-size:10px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .table-section{margin:0 12px}
 .table-wrap{background:var(--card);border-radius:12px;overflow:hidden;margin-top:10px}
 table{width:100%;border-collapse:collapse;font-size:12px}
@@ -67,11 +78,14 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
   <div class="meta">
     <span>已记录 46天</span>
     <span>3233km 总里程</span>
+    
   </div>
 </div>
 <div class="updated">* 从 2026-05-14 开始记录，累计 11 次充电</div>
 
-<div class="section-title">数据洞察</div>
+
+
+<div class="section-title">📊 数据洞察</div>
 <div class="insight-grid">
   <div class="insight-item"><div class="val">432.9<span class="unit">kWh</span></div><div class="lbl">累计电量</div></div>
   <div class="insight-item"><div class="val">11<span class="unit">次</span></div><div class="lbl">累计充电</div></div>
@@ -90,14 +104,36 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
   <div class="insight-item"><div class="val"><span class="green">4.1<span class="unit">%</span></span></div><div class="lbl">平均偏差率</div></div>
 </div>
 
+<div class="insight-grid" style="margin-top:1px">
+  <div class="insight-item"><div class="val"><span class="green">1.05<span class="unit">x</span></span></div><div class="lbl">平均充电效率</div></div>
+  <div class="insight-item"><div class="val"><span class="green">1.18<span class="unit">x</span></span></div><div class="lbl">最佳效率</div></div>
+  <div class="insight-item"><div class="val"><span class="red">0.85<span class="unit">x</span></span></div><div class="lbl">最差效率</div></div>
+</div>
+
 <div class="trend-section">
-  <div class="trend-header"><span class="title">花费趋势</span><span class="unit">元/次</span></div>
+  <div class="trend-header"><span class="title">💰 花费趋势</span><span class="unit">元/次</span></div>
   <div class="trend-chart" id="trendChart"></div>
+</div>
+
+<div class="trend-section">
+  <div class="trend-header"><span class="title">🔋 SOC 累计偏差 (桩损耗累加)</span><span class="unit">kWh</span></div>
+  <div class="trend-chart-sm" id="driftChart"></div>
+  <div style="font-size:10px;color:var(--text3);margin-top:6px">累计偏差+17.59kWh · 趋势上升=电池可能在衰减 · 平稳=正常波动</div>
+</div>
+
+<div class="trend-section">
+  <div class="trend-header"><span class="title">⚡ 充电效率趋势 (实际/理论)</span><span class="unit">&gt;1=桩多充了 &lt;1=桩少充了</span></div>
+  <div class="trend-chart-sm" id="effChart"></div>
+</div>
+
+<div class="trend-section">
+  <div class="trend-header"><span class="title">📉 每公里成本</span><span class="unit">元/km</span></div>
+  <div class="trend-chart-sm" id="costKmChart"></div>
 </div>
 
 <div class="cal-section">
   <div class="cal-header">
-    <span class="title">充电日历</span>
+    <span class="title">📅 充电日历</span>
     <div class="cal-nav">
       <span class="arrow" id="calPrev">&lt;</span>
       <span class="month" id="calMonth"></span>
@@ -105,6 +141,79 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
     </div>
   </div>
   <div class="cal-grid" id="calGrid"></div>
+</div>
+
+<div class="section-title">🏆 充电效率排行</div>
+<div class="table-section">
+  <div class="table-wrap" style="margin-top:0">
+    <div class="ranking-item">
+          <div class="rank gold">🥇</div>
+          <div class="info">
+            <div class="eff"><span class="green">1.18x</span></div>
+            <div class="sub">2026-05-31 · 莲城充电·湘潭交发体育中心充电站 · 20.871kWh · 29% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank silver">🥈</div>
+          <div class="info">
+            <div class="eff"><span class="green">1.14x</span></div>
+            <div class="sub">2026-06-14 · 莲城充电-体育中心二期 · 50.843kWh · 73% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank bronze">🥉</div>
+          <div class="info">
+            <div class="eff"><span class="green">1.14x</span></div>
+            <div class="sub">2026-06-28 · 莲城充电-体育中心二期 · 55.656kWh · 80% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank ">4</div>
+          <div class="info">
+            <div class="eff"><span class="green">1.13x</span></div>
+            <div class="sub">2026-05-23 · 宇泰智充棠塘小区充电站 · 36.579kWh · 53% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank ">5</div>
+          <div class="info">
+            <div class="eff"><span class="green">1.12x</span></div>
+            <div class="sub">2026-05-14 · 比亚迪长沙天心4S店超充站 · 33.41kWh · 49% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank ">6</div>
+          <div class="info">
+            <div class="eff"><span class="green">1.12x</span></div>
+            <div class="sub">2026-05-16 · 中国石化湘大路充电站 · 40.275kWh · 59% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank ">7</div>
+          <div class="info">
+            <div class="eff"><span class="green">1.04x</span></div>
+            <div class="sub">2026-05-27 · 麓山城资后湖艺术园6号停车场充电站 · 43.539kWh · 69% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank ">8</div>
+          <div class="info">
+            <div class="eff"><span class="green">0.98x</span></div>
+            <div class="sub">2026-06-06 · 株洲市国宾酒店充电站 · 45.962kWh · 77% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank ">9</div>
+          <div class="info">
+            <div class="eff"><span class="orange">0.93x</span></div>
+            <div class="sub">2026-06-21 · 中国石化湘大路充电站 · 37.451kWh · 66% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank ">10</div>
+          <div class="info">
+            <div class="eff"><span class="orange">0.91x</span></div>
+            <div class="sub">2026-05-20 · 莲城充电-妇幼充电站 · 39.502kWh · 71% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank ">11</div>
+          <div class="info">
+            <div class="eff"><span class="red">0.85x</span></div>
+            <div class="sub">2026-06-19 · 风景园林二队超充站 · 28.83kWh · 56% SOC</div>
+          </div>
+        </div>
+  </div>
 </div>
 
 <div class="section-title">最近充电</div>
@@ -115,103 +224,126 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
     <span>金额 <b>¥32.84</b></span>
     <span>单价 ¥0.59/度</span>
     <span>SOC 13% → 93%</span>
+    <span>效率 <b>1.14x</b></span>
   </div>
 </div>
 
-<div class="section-title">充电历史</div>
+<div class="section-title">📋 充电历史</div>
 <div class="table-section">
   <div class="table-wrap" style="overflow-x:auto">
     <table>
-      <thead><tr><th>日期</th><th>充电站</th><th>电量</th><th>金额</th><th>单价</th><th>SOC</th><th>损耗</th></tr></thead>
+      <thead><tr><th>日期</th><th>充电站</th><th>电量</th><th>金额</th><th>单价</th><th>SOC</th><th>效率</th><th>损耗</th><th></th></tr></thead>
       <tbody>
         <tr>
           <td>2026-06-28</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">莲城充电-体育中心二期</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">莲城充电-体育中心二期</td>
           <td class="kwh">55.656</td>
           <td class="amount">¥32.84</td>
           <td>¥0.59</td>
           <td>13%→93%</td>
+          <td>1.14x</td>
           <td><span class="tag tag-hi">12.5%</span></td>
+          <td></td>
         </tr><tr>
           <td>2026-06-21</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">中国石化湘大路充电站</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">中国石化湘大路充电站</td>
           <td class="kwh">37.451</td>
           <td class="amount">¥21.25</td>
           <td>¥0.57</td>
           <td>34%→100%</td>
+          <td>0.93x</td>
           <td><span class="tag tag-neg">7.3%</span></td>
+          <td></td>
         </tr><tr>
           <td>2026-06-19</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">风景园林二队超充站</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">风景园林二队超充站</td>
           <td class="kwh">28.83</td>
           <td class="amount">¥17.01</td>
           <td>¥0.59</td>
           <td>22%→78%</td>
+          <td>0.85x</td>
           <td><span class="tag tag-neg">18.3%</span></td>
+          <td></td>
         </tr><tr>
           <td>2026-06-14</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">莲城充电-体育中心二期</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">莲城充电-体育中心二期</td>
           <td class="kwh">50.843</td>
           <td class="amount">¥30.00</td>
           <td>¥0.59</td>
           <td>19%→92%</td>
+          <td>1.14x</td>
           <td><span class="tag tag-hi">12.5%</span></td>
+          <td></td>
         </tr><tr>
           <td>2026-06-06</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">株洲市国宾酒店充电站</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">株洲市国宾酒店充电站</td>
           <td class="kwh">45.962</td>
           <td class="amount">¥26.11</td>
           <td>¥0.57</td>
           <td>23%→100%</td>
+          <td>0.98x</td>
           <td><span class="tag tag-neg">2.0%</span></td>
+          <td></td>
         </tr><tr>
           <td>2026-05-31</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">莲城充电·湘潭交发体育中心充电站</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">莲城充电·湘潭交发体育中心充电站</td>
           <td class="kwh">20.871</td>
           <td class="amount">¥24.63</td>
           <td>¥1.18</td>
           <td>57%→86%</td>
+          <td>1.18x</td>
           <td><span class="tag tag-hi">15.4%</span></td>
+          <td></td>
         </tr><tr>
           <td>2026-05-27</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">麓山城资后湖艺术园6号停车场充电站</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">麓山城资后湖艺术园6号停车场充电站</td>
           <td class="kwh">43.539</td>
           <td class="amount">¥53.99</td>
           <td>¥1.24</td>
           <td>30%→99%</td>
+          <td>1.04x</td>
           <td><span class="tag tag-ok">3.5%</span></td>
+          <td></td>
         </tr><tr>
           <td>2026-05-23</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">宇泰智充棠塘小区充电站</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">宇泰智充棠塘小区充电站</td>
           <td class="kwh">36.579</td>
           <td class="amount">¥32.19</td>
           <td>¥0.88</td>
           <td>42%→95%</td>
+          <td>1.13x</td>
           <td><span class="tag tag-hi">11.8%</span></td>
+          <td></td>
         </tr><tr>
           <td>2026-05-20</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">莲城充电-妇幼充电站</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">莲城充电-妇幼充电站</td>
           <td class="kwh">39.502</td>
           <td class="amount">¥46.61</td>
           <td>¥1.18</td>
           <td>29%→100%</td>
+          <td>0.91x</td>
           <td><span class="tag tag-neg">9.5%</span></td>
+          <td></td>
         </tr><tr>
           <td>2026-05-16</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">中国石化湘大路充电站</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">中国石化湘大路充电站</td>
           <td class="kwh">40.275</td>
           <td class="amount">¥47.99</td>
           <td>¥1.19</td>
           <td>21%→80%</td>
+          <td>1.12x</td>
           <td><span class="tag tag-hi">10.8%</span></td>
+          <td></td>
         </tr><tr>
           <td>2026-05-14</td>
-          <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">比亚迪长沙天心4S店超充站</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">比亚迪长沙天心4S店超充站</td>
           <td class="kwh">33.41</td>
           <td class="amount">¥34.41</td>
           <td>¥1.03</td>
           <td>40%→89%</td>
+          <td>1.12x</td>
           <td><span class="tag tag-hi">10.7%</span></td>
+          <td></td>
         </tr>
       </tbody>
     </table>
@@ -220,12 +352,13 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
 </div>
 
 <script>
-var DATA = [{"date": "2026-06-28", "station": "莲城充电-体育中心二期", "gun": "15号-15号", "duration_min": 51.1, "kwh": 55.656, "amount": 32.84, "unit_price": 0.59, "start_soc": 13.0, "end_soc": 93.0, "mileage": 3233.0, "driven_km": 278.0, "real_consumption": 20.02, "battery_calc_kwh": 48.72, "pile_loss": 6.94, "loss_rate": 12.5, "order_id": "20260628120410063475", "start_time": "12:05:16", "stop_method": "远程终止充电", "platform": "莲城充电"}, {"date": "2026-06-21", "station": "中国石化湘大路充电站", "gun": "湘潭湘大路站2号桩-B", "duration_min": 46, "kwh": 37.451, "amount": 21.25, "unit_price": 0.57, "start_soc": 34.0, "end_soc": 100.0, "mileage": 2955.0, "driven_km": 233.0, "real_consumption": 16.07, "battery_calc_kwh": 40.19, "pile_loss": -2.74, "loss_rate": 7.3, "order_id": "", "start_time": "", "stop_method": "", "platform": ""}, {"date": "2026-06-19", "station": "风景园林二队超充站", "gun": "风景园林二队1号机-G", "duration_min": 21.55, "kwh": 28.83, "amount": 17.01, "unit_price": 0.59, "start_soc": 22.0, "end_soc": 78.0, "mileage": 2722.0, "driven_km": 100.0, "real_consumption": 28.83, "battery_calc_kwh": 34.1, "pile_loss": -5.27, "loss_rate": 18.3, "order_id": "20260619124812045742", "start_time": "12:48:25", "stop_method": "APP远程停止", "platform": "湘潭莲城充电"}, {"date": "2026-06-14", "station": "莲城充电-体育中心二期", "gun": "10号-10号", "duration_min": 46.38, "kwh": 50.843, "amount": 30.0, "unit_price": 0.59, "start_soc": 19.0, "end_soc": 92.0, "mileage": 2622.0, "driven_km": 242.0, "real_consumption": 21.01, "battery_calc_kwh": 44.46, "pile_loss": 6.38, "loss_rate": 12.5, "order_id": "20260614122310446515", "start_time": "12:23:56", "stop_method": "远程终止充电", "platform": "湘潭莲城充电"}, {"date": "2026-06-06", "station": "株洲市国宾酒店充电站", "gun": "8830690000007090", "duration_min": 56.23, "kwh": 45.962, "amount": 26.11, "unit_price": 0.57, "start_soc": 23.0, "end_soc": 100.0, "mileage": 2380.0, "driven_km": 160.0, "real_consumption": 28.73, "battery_calc_kwh": 46.89, "pile_loss": -0.93, "loss_rate": 2.0, "order_id": "88306900000070900226060633083739", "start_time": "12:44:24", "stop_method": "充满自动停止", "platform": "国网桩"}, {"date": "2026-05-31", "station": "莲城充电·湘潭交发体育中心充电站", "gun": "新能源体育中心2号-A", "duration_min": 21.23, "kwh": 20.871, "amount": 24.63, "unit_price": 1.18, "start_soc": 57.0, "end_soc": 86.0, "mileage": 2220.0, "driven_km": 174.0, "real_consumption": 11.99, "battery_calc_kwh": 17.66, "pile_loss": 3.21, "loss_rate": 15.4, "order_id": "20260531195014967719", "start_time": "19:50:27", "stop_method": "远程终止充电", "platform": "莲城充电"}, {"date": "2026-05-27", "station": "麓山城资后湖艺术园6号停车场充电站", "gun": "7037870201", "duration_min": 45, "kwh": 43.539, "amount": 53.99, "unit_price": 1.24, "start_soc": 30.0, "end_soc": 99.0, "mileage": 2046.0, "driven_km": 229.0, "real_consumption": 19.01, "battery_calc_kwh": 42.02, "pile_loss": 1.52, "loss_rate": 3.5, "order_id": "B20260527192857607135", "start_time": "19:29:27", "stop_method": "自动终止", "platform": "星星充电"}, {"date": "2026-05-23", "station": "宇泰智充棠塘小区充电站", "gun": "204612000200002401", "duration_min": 48.98, "kwh": 36.579, "amount": 32.19, "unit_price": 0.88, "start_soc": 42.0, "end_soc": 95.0, "mileage": 1817.0, "driven_km": 205.0, "real_consumption": 17.84, "battery_calc_kwh": 32.28, "pile_loss": 4.3, "loss_rate": 11.8, "order_id": "101437000177951747923504802", "start_time": "14:24:50", "stop_method": "", "platform": "小桔充电"}, {"date": "2026-05-20", "station": "莲城充电-妇幼充电站", "gun": "二号-2A", "duration_min": 36.9, "kwh": 39.502, "amount": 46.61, "unit_price": 1.18, "start_soc": 29.0, "end_soc": 100.0, "mileage": 1612.0, "driven_km": 154.0, "real_consumption": 25.65, "battery_calc_kwh": 43.24, "pile_loss": -3.74, "loss_rate": 9.5, "order_id": "20260520195915225173", "start_time": "20:00:28", "stop_method": "收到BST(SOC满足)", "platform": "莲城充电"}, {"date": "2026-05-16", "station": "中国石化湘大路充电站", "gun": "湘潭湘大路站3号桩-A", "duration_min": 29, "kwh": 40.275, "amount": 47.99, "unit_price": 1.19, "start_soc": 21.0, "end_soc": 80.0, "mileage": 1458.0, "driven_km": null, "real_consumption": null, "battery_calc_kwh": 35.93, "pile_loss": 4.34, "loss_rate": 10.8, "order_id": "4601000005162601", "start_time": "20:45", "stop_method": "余额不足，充电中止", "platform": "中国石化"}, {"date": "2026-05-14", "station": "比亚迪长沙天心4S店超充站", "gun": "CN00335701101A", "duration_min": 23, "kwh": 33.41, "amount": 34.41, "unit_price": 1.03, "start_soc": 40.0, "end_soc": 89.0, "mileage": null, "driven_km": null, "real_consumption": null, "battery_calc_kwh": 29.84, "pile_loss": 3.57, "loss_rate": 10.7, "order_id": "7917385530010dc0bbe12c34000", "start_time": "19:02:24", "stop_method": "", "platform": "比亚迪闪充"}];
-var SUMMARY = {"total_charges": 11, "total_kwh": 432.92, "total_amount": 367.03, "avg_price": 0.85, "avg_per_charge": 33.37, "total_hours": 7.1, "total_hours_int": 7, "total_mins_int": 5, "avg_duration_hours": 0.6, "avg_interval_days": 4.5, "total_days": 46, "total_driven": 1775.0, "total_mileage": 3233.0, "avg_consumption": 20.24, "cost_per_100km": 20.68, "km_per_kwh": 4.1, "total_pile_loss": 17.59, "avg_loss_rate": 4.1, "soc_record_count": 11, "latest": {"date": "2026-06-28", "station": "莲城充电-体育中心二期", "gun": "15号-15号", "duration_min": 51.1, "kwh": 55.656, "amount": 32.84, "unit_price": 0.59, "start_soc": 13.0, "end_soc": 93.0, "mileage": 3233.0, "driven_km": 278.0, "real_consumption": 20.02, "battery_calc_kwh": 48.72, "pile_loss": 6.94, "loss_rate": 12.5, "order_id": "20260628120410063475", "start_time": "12:05:16", "stop_method": "远程终止充电", "platform": "莲城充电"}, "battery_capacity": 60.9, "vehicle": "比亚迪海狮05EV", "spend_trend": [{"date": "2026-05-14", "amount": 34.41}, {"date": "2026-05-16", "amount": 47.99}, {"date": "2026-05-20", "amount": 46.61}, {"date": "2026-05-23", "amount": 32.19}, {"date": "2026-05-27", "amount": 53.99}, {"date": "2026-05-31", "amount": 24.63}, {"date": "2026-06-06", "amount": 26.11}, {"date": "2026-06-14", "amount": 30.0}, {"date": "2026-06-19", "amount": 17.01}, {"date": "2026-06-21", "amount": 21.25}, {"date": "2026-06-28", "amount": 32.84}], "charge_calendar": {"2026-05-14": 1, "2026-05-16": 1, "2026-05-20": 1, "2026-05-23": 1, "2026-05-27": 1, "2026-05-31": 1, "2026-06-06": 1, "2026-06-14": 1, "2026-06-19": 1, "2026-06-21": 1, "2026-06-28": 1}, "first_date": "2026-05-14"};
+var DATA = [{"date": "2026-06-28", "station": "莲城充电-体育中心二期", "gun": "15号-15号", "duration_min": 51.1, "kwh": 55.656, "amount": 32.84, "unit_price": 0.59, "start_soc": 13.0, "end_soc": 93.0, "mileage": 3233.0, "driven_km": 278.0, "real_consumption": 20.02, "battery_calc_kwh": 48.72, "pile_loss": 6.94, "loss_rate": 12.5, "order_id": "20260628120410063475", "start_time": "12:05:16", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 1.14, "cost_per_km": 0.118}, {"date": "2026-06-21", "station": "中国石化湘大路充电站", "gun": "湘潭湘大路站2号桩-B", "duration_min": 46, "kwh": 37.451, "amount": 21.25, "unit_price": 0.57, "start_soc": 34.0, "end_soc": 100.0, "mileage": 2955.0, "driven_km": 233.0, "real_consumption": 16.07, "battery_calc_kwh": 40.19, "pile_loss": -2.74, "loss_rate": 7.3, "order_id": "", "start_time": "", "stop_method": "", "platform": "", "coupon": 0, "effective_unit_price": 0.57, "efficiency": 0.93, "cost_per_km": 0.091}, {"date": "2026-06-19", "station": "风景园林二队超充站", "gun": "风景园林二队1号机-G", "duration_min": 21.55, "kwh": 28.83, "amount": 17.01, "unit_price": 0.59, "start_soc": 22.0, "end_soc": 78.0, "mileage": 2722.0, "driven_km": 100.0, "real_consumption": 28.83, "battery_calc_kwh": 34.1, "pile_loss": -5.27, "loss_rate": 18.3, "order_id": "20260619124812045742", "start_time": "12:48:25", "stop_method": "APP远程停止", "platform": "湘潭莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 0.85, "cost_per_km": 0.17}, {"date": "2026-06-14", "station": "莲城充电-体育中心二期", "gun": "10号-10号", "duration_min": 46.38, "kwh": 50.843, "amount": 30.0, "unit_price": 0.59, "start_soc": 19.0, "end_soc": 92.0, "mileage": 2622.0, "driven_km": 242.0, "real_consumption": 21.01, "battery_calc_kwh": 44.46, "pile_loss": 6.38, "loss_rate": 12.5, "order_id": "20260614122310446515", "start_time": "12:23:56", "stop_method": "远程终止充电", "platform": "湘潭莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 1.14, "cost_per_km": 0.124}, {"date": "2026-06-06", "station": "株洲市国宾酒店充电站", "gun": "8830690000007090", "duration_min": 56.23, "kwh": 45.962, "amount": 26.11, "unit_price": 0.57, "start_soc": 23.0, "end_soc": 100.0, "mileage": 2380.0, "driven_km": 160.0, "real_consumption": 28.73, "battery_calc_kwh": 46.89, "pile_loss": -0.93, "loss_rate": 2.0, "order_id": "88306900000070900226060633083739", "start_time": "12:44:24", "stop_method": "充满自动停止", "platform": "国网桩", "coupon": 0, "effective_unit_price": 0.57, "efficiency": 0.98, "cost_per_km": 0.163}, {"date": "2026-05-31", "station": "莲城充电·湘潭交发体育中心充电站", "gun": "新能源体育中心2号-A", "duration_min": 21.23, "kwh": 20.871, "amount": 24.63, "unit_price": 1.18, "start_soc": 57.0, "end_soc": 86.0, "mileage": 2220.0, "driven_km": 174.0, "real_consumption": 11.99, "battery_calc_kwh": 17.66, "pile_loss": 3.21, "loss_rate": 15.4, "order_id": "20260531195014967719", "start_time": "19:50:27", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 1.18, "efficiency": 1.18, "cost_per_km": 0.142}, {"date": "2026-05-27", "station": "麓山城资后湖艺术园6号停车场充电站", "gun": "7037870201", "duration_min": 45, "kwh": 43.539, "amount": 53.99, "unit_price": 1.24, "start_soc": 30.0, "end_soc": 99.0, "mileage": 2046.0, "driven_km": 229.0, "real_consumption": 19.01, "battery_calc_kwh": 42.02, "pile_loss": 1.52, "loss_rate": 3.5, "order_id": "B20260527192857607135", "start_time": "19:29:27", "stop_method": "自动终止", "platform": "星星充电", "coupon": 0, "effective_unit_price": 1.24, "efficiency": 1.04, "cost_per_km": 0.236}, {"date": "2026-05-23", "station": "宇泰智充棠塘小区充电站", "gun": "204612000200002401", "duration_min": 48.98, "kwh": 36.579, "amount": 32.19, "unit_price": 0.88, "start_soc": 42.0, "end_soc": 95.0, "mileage": 1817.0, "driven_km": 205.0, "real_consumption": 17.84, "battery_calc_kwh": 32.28, "pile_loss": 4.3, "loss_rate": 11.8, "order_id": "101437000177951747923504802", "start_time": "14:24:50", "stop_method": "", "platform": "小桔充电", "coupon": 0, "effective_unit_price": 0.88, "efficiency": 1.13, "cost_per_km": 0.157}, {"date": "2026-05-20", "station": "莲城充电-妇幼充电站", "gun": "二号-2A", "duration_min": 36.9, "kwh": 39.502, "amount": 46.61, "unit_price": 1.18, "start_soc": 29.0, "end_soc": 100.0, "mileage": 1612.0, "driven_km": 154.0, "real_consumption": 25.65, "battery_calc_kwh": 43.24, "pile_loss": -3.74, "loss_rate": 9.5, "order_id": "20260520195915225173", "start_time": "20:00:28", "stop_method": "收到BST(SOC满足)", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 1.18, "efficiency": 0.91, "cost_per_km": 0.303}, {"date": "2026-05-16", "station": "中国石化湘大路充电站", "gun": "湘潭湘大路站3号桩-A", "duration_min": 29, "kwh": 40.275, "amount": 47.99, "unit_price": 1.19, "start_soc": 21.0, "end_soc": 80.0, "mileage": 1458.0, "driven_km": null, "real_consumption": null, "battery_calc_kwh": 35.93, "pile_loss": 4.34, "loss_rate": 10.8, "order_id": "4601000005162601", "start_time": "20:45", "stop_method": "余额不足，充电中止", "platform": "中国石化", "coupon": 0, "effective_unit_price": 1.19, "efficiency": 1.12, "cost_per_km": null}, {"date": "2026-05-14", "station": "比亚迪长沙天心4S店超充站", "gun": "CN00335701101A", "duration_min": 23, "kwh": 33.41, "amount": 34.41, "unit_price": 1.03, "start_soc": 40.0, "end_soc": 89.0, "mileage": null, "driven_km": null, "real_consumption": null, "battery_calc_kwh": 29.84, "pile_loss": 3.57, "loss_rate": 10.7, "order_id": "7917385530010dc0bbe12c34000", "start_time": "19:02:24", "stop_method": "", "platform": "比亚迪闪充", "coupon": 0, "effective_unit_price": 1.03, "efficiency": 1.12, "cost_per_km": null}];
+var SUMMARY = {"total_charges": 11, "total_kwh": 432.92, "total_amount": 367.03, "total_coupon": 0, "avg_price": 0.85, "avg_per_charge": 33.37, "total_hours": 7.1, "total_hours_int": 7, "total_mins_int": 5, "avg_duration_hours": 0.6, "avg_interval_days": 4.5, "total_days": 46, "total_driven": 1775.0, "total_mileage": 3233.0, "avg_consumption": 20.24, "cost_per_100km": 20.68, "km_per_kwh": 4.1, "total_pile_loss": 17.59, "avg_loss_rate": 4.1, "soc_record_count": 11, "soc_drift": [{"date": "2026-05-14", "pile_loss": 3.57, "cumulative_loss": 3.57, "loss_rate": 10.7}, {"date": "2026-05-16", "pile_loss": 4.34, "cumulative_loss": 7.91, "loss_rate": 10.8}, {"date": "2026-05-20", "pile_loss": -3.74, "cumulative_loss": 4.17, "loss_rate": 9.5}, {"date": "2026-05-23", "pile_loss": 4.3, "cumulative_loss": 8.47, "loss_rate": 11.8}, {"date": "2026-05-27", "pile_loss": 1.52, "cumulative_loss": 9.99, "loss_rate": 3.5}, {"date": "2026-05-31", "pile_loss": 3.21, "cumulative_loss": 13.2, "loss_rate": 15.4}, {"date": "2026-06-06", "pile_loss": -0.93, "cumulative_loss": 12.27, "loss_rate": 2.0}, {"date": "2026-06-14", "pile_loss": 6.38, "cumulative_loss": 18.65, "loss_rate": 12.5}, {"date": "2026-06-19", "pile_loss": -5.27, "cumulative_loss": 13.38, "loss_rate": 18.3}, {"date": "2026-06-21", "pile_loss": -2.74, "cumulative_loss": 10.64, "loss_rate": 7.3}, {"date": "2026-06-28", "pile_loss": 6.94, "cumulative_loss": 17.58, "loss_rate": 12.5}], "avg_efficiency": 1.049, "best_efficiency": {"date": "2026-05-31", "station": "莲城充电·湘潭交发体育中心充电站", "gun": "新能源体育中心2号-A", "duration_min": 21.23, "kwh": 20.871, "amount": 24.63, "unit_price": 1.18, "start_soc": 57.0, "end_soc": 86.0, "mileage": 2220.0, "driven_km": 174.0, "real_consumption": 11.99, "battery_calc_kwh": 17.66, "pile_loss": 3.21, "loss_rate": 15.4, "order_id": "20260531195014967719", "start_time": "19:50:27", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 1.18, "efficiency": 1.18, "cost_per_km": 0.142}, "worst_efficiency": {"date": "2026-06-19", "station": "风景园林二队超充站", "gun": "风景园林二队1号机-G", "duration_min": 21.55, "kwh": 28.83, "amount": 17.01, "unit_price": 0.59, "start_soc": 22.0, "end_soc": 78.0, "mileage": 2722.0, "driven_km": 100.0, "real_consumption": 28.83, "battery_calc_kwh": 34.1, "pile_loss": -5.27, "loss_rate": 18.3, "order_id": "20260619124812045742", "start_time": "12:48:25", "stop_method": "APP远程停止", "platform": "湘潭莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 0.85, "cost_per_km": 0.17}, "efficiency_ranking": [{"date": "2026-05-31", "station": "莲城充电·湘潭交发体育中心充电站", "efficiency": 1.18, "kwh": 20.871, "soc_change": 29.0}, {"date": "2026-06-14", "station": "莲城充电-体育中心二期", "efficiency": 1.14, "kwh": 50.843, "soc_change": 73.0}, {"date": "2026-06-28", "station": "莲城充电-体育中心二期", "efficiency": 1.14, "kwh": 55.656, "soc_change": 80.0}, {"date": "2026-05-23", "station": "宇泰智充棠塘小区充电站", "efficiency": 1.13, "kwh": 36.579, "soc_change": 53.0}, {"date": "2026-05-14", "station": "比亚迪长沙天心4S店超充站", "efficiency": 1.12, "kwh": 33.41, "soc_change": 49.0}, {"date": "2026-05-16", "station": "中国石化湘大路充电站", "efficiency": 1.12, "kwh": 40.275, "soc_change": 59.0}, {"date": "2026-05-27", "station": "麓山城资后湖艺术园6号停车场充电站", "efficiency": 1.04, "kwh": 43.539, "soc_change": 69.0}, {"date": "2026-06-06", "station": "株洲市国宾酒店充电站", "efficiency": 0.98, "kwh": 45.962, "soc_change": 77.0}, {"date": "2026-06-21", "station": "中国石化湘大路充电站", "efficiency": 0.93, "kwh": 37.451, "soc_change": 66.0}, {"date": "2026-05-20", "station": "莲城充电-妇幼充电站", "efficiency": 0.91, "kwh": 39.502, "soc_change": 71.0}, {"date": "2026-06-19", "station": "风景园林二队超充站", "efficiency": 0.85, "kwh": 28.83, "soc_change": 56.0}], "efficiency_trend": [{"date": "2026-05-14", "efficiency": 1.12}, {"date": "2026-05-16", "efficiency": 1.12}, {"date": "2026-05-20", "efficiency": 0.91}, {"date": "2026-05-23", "efficiency": 1.13}, {"date": "2026-05-27", "efficiency": 1.04}, {"date": "2026-05-31", "efficiency": 1.18}, {"date": "2026-06-06", "efficiency": 0.98}, {"date": "2026-06-14", "efficiency": 1.14}, {"date": "2026-06-19", "efficiency": 0.85}, {"date": "2026-06-21", "efficiency": 0.93}, {"date": "2026-06-28", "efficiency": 1.14}], "cost_per_km_trend": [{"date": "2026-05-20", "cost_per_km": 0.303}, {"date": "2026-05-23", "cost_per_km": 0.157}, {"date": "2026-05-27", "cost_per_km": 0.236}, {"date": "2026-05-31", "cost_per_km": 0.142}, {"date": "2026-06-06", "cost_per_km": 0.163}, {"date": "2026-06-14", "cost_per_km": 0.124}, {"date": "2026-06-19", "cost_per_km": 0.17}, {"date": "2026-06-21", "cost_per_km": 0.091}, {"date": "2026-06-28", "cost_per_km": 0.118}], "latest": {"date": "2026-06-28", "station": "莲城充电-体育中心二期", "gun": "15号-15号", "duration_min": 51.1, "kwh": 55.656, "amount": 32.84, "unit_price": 0.59, "start_soc": 13.0, "end_soc": 93.0, "mileage": 3233.0, "driven_km": 278.0, "real_consumption": 20.02, "battery_calc_kwh": 48.72, "pile_loss": 6.94, "loss_rate": 12.5, "order_id": "20260628120410063475", "start_time": "12:05:16", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 1.14, "cost_per_km": 0.118}, "battery_capacity": 60.9, "vehicle": "比亚迪海狮05EV", "spend_trend": [{"date": "2026-05-14", "amount": 34.41}, {"date": "2026-05-16", "amount": 47.99}, {"date": "2026-05-20", "amount": 46.61}, {"date": "2026-05-23", "amount": 32.19}, {"date": "2026-05-27", "amount": 53.99}, {"date": "2026-05-31", "amount": 24.63}, {"date": "2026-06-06", "amount": 26.11}, {"date": "2026-06-14", "amount": 30.0}, {"date": "2026-06-19", "amount": 17.01}, {"date": "2026-06-21", "amount": 21.25}, {"date": "2026-06-28", "amount": 32.84}], "charge_calendar": {"2026-05-14": 1, "2026-05-16": 1, "2026-05-20": 1, "2026-05-23": 1, "2026-05-27": 1, "2026-05-31": 1, "2026-06-06": 1, "2026-06-14": 1, "2026-06-19": 1, "2026-06-21": 1, "2026-06-28": 1}, "first_date": "2026-05-14"};
 </script>
 <script>
 (function(){
   var d=DATA,s=SUMMARY;
+
   // Calendar
   var charged=s.charge_calendar||{};
   var now=new Date();
@@ -248,68 +381,101 @@ var SUMMARY = {"total_charges": 11, "total_kwh": 432.92, "total_amount": 367.03,
   document.getElementById('calNext').onclick=function(){calMonth++;if(calMonth>11){calMonth=0;calYear++}renderCal()};
   renderCal();
 
-  // Trend
-  var data=s.spend_trend||[];
-  if(data.length){
+  // Trend draw helper
+  function drawTrend(containerId, data, valueKey, color, unit, height, yDecimals) {
+    var el = document.getElementById(containerId);
+    if (!el || !data || !data.length) return;
     var svgNS='http://www.w3.org/2000/svg';
     var svg=document.createElementNS(svgNS,'svg');
-    svg.setAttribute('viewBox','0 0 360 140');
+    svg.setAttribute('viewBox','0 0 360 '+height);
     svg.setAttribute('preserveAspectRatio','xMidYMid meet');
     svg.style.width='100%';svg.style.height='100%';
-    var pad={top:8,right:10,bottom:20,left:48},w=360,h=140;
+    var pad={top:6,right:10,bottom:18,left:50},w=360,h=height;
     var cw=w-pad.left-pad.right,ch=h-pad.top-pad.bottom;
-    var amts=data.map(function(r){return r.amount});
-    var max=Math.max.apply(null,amts),min=Math.min.apply(null,amts);
-    var rng=max-min||1;
+    var vals=data.map(function(r){return r[valueKey]});
+    var max=Math.max.apply(null,vals),min=Math.min.apply(null,vals);
+    var rng=(max-min)||1;
+
+    // Zero line for drift chart
+    var zeroY = null;
+    if (min < 0 && max > 0) {
+      zeroY = pad.top + ch * (max / rng);
+      var zl=document.createElementNS(svgNS,'line');
+      zl.setAttribute('x1',pad.left);zl.setAttribute('x2',w-pad.right);
+      zl.setAttribute('y1',zeroY);zl.setAttribute('y2',zeroY);
+      zl.setAttribute('stroke','#e2e8f0');zl.setAttribute('stroke-width','1');
+      zl.setAttribute('stroke-dasharray','4,3');
+      svg.appendChild(zl);
+    }
+
     for(var i=0;i<=4;i++){
-      var val=Math.round((min+rng*i/4)*10)/10;
+      var val=min+rng*i/4;
       var y=pad.top+ch-(ch*i/4);
       var t=document.createElementNS(svgNS,'text');
-      t.setAttribute('x',pad.left-6);t.setAttribute('y',y+4);
+      t.setAttribute('x',pad.left-6);t.setAttribute('y',y+3);
       t.setAttribute('text-anchor','end');t.setAttribute('fill','#94a3b8');
-      t.setAttribute('font-size','9');t.textContent='Y'+val;
+      t.setAttribute('font-size','9');t.textContent=val.toFixed(yDecimals||0);
       svg.appendChild(t);
-      var l=document.createElementNS(svgNS,'line');
-      l.setAttribute('x1',pad.left);l.setAttribute('x2',w-pad.right);
-      l.setAttribute('y1',y);l.setAttribute('y2',y);
-      l.setAttribute('stroke','#e8edec');l.setAttribute('stroke-width','0.5');
-      svg.appendChild(l);
     }
+
     data.forEach(function(d,i){
-      var x=pad.left+(cw*i/Math.max(data.length-1,1));
-      var t=document.createElementNS(svgNS,'text');
-      t.setAttribute('x',x);t.setAttribute('y',h-2);
-      t.setAttribute('text-anchor','middle');t.setAttribute('fill','#94a3b8');
-      t.setAttribute('font-size','9');t.textContent=d.date.slice(5);
-      svg.appendChild(t);
+      if(i%Math.max(Math.floor(data.length/6),1)===0 || i===data.length-1){
+        var x=pad.left+(cw*i/Math.max(data.length-1,1));
+        var t=document.createElementNS(svgNS,'text');
+        t.setAttribute('x',x);t.setAttribute('y',h-4);
+        t.setAttribute('text-anchor','middle');t.setAttribute('fill','#94a3b8');
+        t.setAttribute('font-size','8');t.textContent=d.date.slice(5);
+        svg.appendChild(t);
+      }
     });
+
     var areaPts='',linePts='';
     data.forEach(function(d,i){
       var x=pad.left+(cw*i/Math.max(data.length-1,1));
-      var y=pad.top+ch-(ch*(d.amount-min)/rng);
+      var y=pad.top+ch-(ch*(d[valueKey]-min)/rng);
       areaPts+=(i===0?'M':'L')+x.toFixed(1)+','+y.toFixed(1)+' ';
       linePts+=(i===0?'M':'L')+x.toFixed(1)+','+y.toFixed(1)+' ';
     });
     areaPts+='L'+(pad.left+cw).toFixed(1)+','+(pad.top+ch).toFixed(1)+' L'+pad.left+','+(pad.top+ch).toFixed(1)+' Z';
+
     var defs=document.createElementNS(svgNS,'defs');
     var grad=document.createElementNS(svgNS,'linearGradient');
-    grad.setAttribute('id','g');grad.setAttribute('x1','0');grad.setAttribute('y1','0');grad.setAttribute('x2','0');grad.setAttribute('y2','1');
-    var s1=document.createElementNS(svgNS,'stop');s1.setAttribute('offset','0%');s1.setAttribute('stop-color','#0d9488');s1.setAttribute('stop-opacity','0.25');
-    var s2=document.createElementNS(svgNS,'stop');s2.setAttribute('offset','100%');s2.setAttribute('stop-color','#0d9488');s2.setAttribute('stop-opacity','0.02');
+    grad.setAttribute('id',containerId+'g');grad.setAttribute('x1','0');grad.setAttribute('y1','0');grad.setAttribute('x2','0');grad.setAttribute('y2','1');
+    var s1=document.createElementNS(svgNS,'stop');s1.setAttribute('offset','0%');s1.setAttribute('stop-color',color);s1.setAttribute('stop-opacity','0.2');
+    var s2=document.createElementNS(svgNS,'stop');s2.setAttribute('offset','100%');s2.setAttribute('stop-color',color);s2.setAttribute('stop-opacity','0.02');
     grad.appendChild(s1);grad.appendChild(s2);defs.appendChild(grad);svg.appendChild(defs);
-    var area=document.createElementNS(svgNS,'path');area.setAttribute('d',areaPts);area.setAttribute('fill','url(#g)');svg.appendChild(area);
-    var path=document.createElementNS(svgNS,'path');path.setAttribute('d',linePts);path.setAttribute('fill','none');path.setAttribute('stroke','#0d9488');path.setAttribute('stroke-width','2');path.setAttribute('stroke-linecap','round');svg.appendChild(path);
+
+    var area=document.createElementNS(svgNS,'path');area.setAttribute('d',areaPts);area.setAttribute('fill','url(#'+containerId+'g)');svg.appendChild(area);
+    var path=document.createElementNS(svgNS,'path');path.setAttribute('d',linePts);path.setAttribute('fill','none');path.setAttribute('stroke',color);path.setAttribute('stroke-width','1.8');path.setAttribute('stroke-linecap','round');svg.appendChild(path);
+
     data.forEach(function(d,i){
       var x=pad.left+(cw*i/Math.max(data.length-1,1));
-      var y=pad.top+ch-(ch*(d.amount-min)/rng);
+      var y=pad.top+ch-(ch*(d[valueKey]-min)/rng);
       var c=document.createElementNS(svgNS,'circle');
       c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
-      c.setAttribute('r','3');c.setAttribute('fill','#fff');
-      c.setAttribute('stroke','#0d9488');c.setAttribute('stroke-width','2');
+      c.setAttribute('r','2.5');c.setAttribute('fill','#fff');
+      c.setAttribute('stroke',color);c.setAttribute('stroke-width','1.5');
       svg.appendChild(c);
     });
-    document.getElementById('trendChart').appendChild(svg);
+    el.appendChild(svg);
   }
+
+  // Spend trend
+  var spendData=s.spend_trend||[];
+  if(spendData.length) drawTrend('trendChart', spendData, 'amount', '#0d9488', 'Y', 140, 1);
+
+  // SOC drift
+  var driftData=s.soc_drift||[];
+  if(driftData.length>=2) drawTrend('driftChart', driftData, 'cumulative_loss', '#8b5cf6', 'kWh', 110, 1);
+
+  // Efficiency trend
+  var effData=s.efficiency_trend||[];
+  if(effData.length>=2) drawTrend('effChart', effData, 'efficiency', '#0ea5e9', 'x', 110, 2);
+
+  // Cost per km trend
+  var ckmData=s.cost_per_km_trend||[];
+  if(ckmData.length>=2) drawTrend('costKmChart', ckmData, 'cost_per_km', '#f59e0b', 'Y', 110, 2);
+
 })();
 </script>
 </body>

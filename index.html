@@ -74,34 +74,34 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
 
 <div class="hero">
   <div class="label">累计充电支出</div>
-  <div class="amount">¥367.03</div>
+  <div class="amount">¥473.27</div>
   <div class="meta">
-    <span>已记录 46天</span>
-    <span>3233km 总里程</span>
-    
+    <span>已记录 59天</span>
+    <span>4024km 总里程</span>
+    <span>优惠券 ¥10</span>
   </div>
 </div>
-<div class="updated">* 从 2026-05-14 开始记录，累计 11 次充电</div>
+<div class="updated">* 从 2026-05-14 开始记录，累计 14 次充电</div>
 
-
+<div class="save-total"><span class="save-icon">🎫</span><span>累计优惠券节省 <span class="save-amount">¥10</span>，实际总支出 ¥473.27</span></div>
 
 <div class="section-title">📊 数据洞察</div>
 <div class="insight-grid">
-  <div class="insight-item"><div class="val">432.9<span class="unit">kWh</span></div><div class="lbl">累计电量</div></div>
-  <div class="insight-item"><div class="val">11<span class="unit">次</span></div><div class="lbl">累计充电</div></div>
-  <div class="insight-item"><div class="val">¥0.85<span class="unit">/度</span></div><div class="lbl">平均单价</div></div>
-  <div class="insight-item"><div class="val">¥33.37<span class="unit">/次</span></div><div class="lbl">次均花费</div></div>
-  <div class="insight-item"><div class="val">¥20.68<span class="unit">/百km</span></div><div class="lbl">百公里花费</div></div>
-  <div class="insight-item"><div class="val red">20.2<span class="unit">kWh</span></div><div class="lbl">百公里电耗</div></div>
-  <div class="insight-item"><div class="val">7h5min<span class="unit"></span></div><div class="lbl">总充电时长</div></div>
-  <div class="insight-item"><div class="val">4.1<span class="unit">km/kWh</span></div><div class="lbl">每度电驱动</div></div>
+  <div class="insight-item"><div class="val">590.1<span class="unit">kWh</span></div><div class="lbl">累计电量</div></div>
+  <div class="insight-item"><div class="val">14<span class="unit">次</span></div><div class="lbl">累计充电</div></div>
+  <div class="insight-item"><div class="val">¥0.80<span class="unit">/度</span></div><div class="lbl">平均单价</div></div>
+  <div class="insight-item"><div class="val">¥33.80<span class="unit">/次</span></div><div class="lbl">次均花费</div></div>
+  <div class="insight-item"><div class="val">¥18.44<span class="unit">/百km</span></div><div class="lbl">百公里花费</div></div>
+  <div class="insight-item"><div class="val red">20.1<span class="unit">kWh</span></div><div class="lbl">百公里电耗</div></div>
+  <div class="insight-item"><div class="val">8h24min<span class="unit"></span></div><div class="lbl">总充电时长</div></div>
+  <div class="insight-item"><div class="val">4.3<span class="unit">km/kWh</span></div><div class="lbl">每度电驱动</div></div>
   <div class="insight-item"><div class="val">4.5<span class="unit">天</span></div><div class="lbl">平均间隔</div></div>
 </div>
 
 <div class="insight-grid" style="margin-top:1px">
   <div class="insight-item"><div class="val">0.6<span class="unit">h/次</span></div><div class="lbl">次均时长</div></div>
-  <div class="insight-item"><div class="val"><span class="orange">17.6<span class="unit">kWh</span></span></div><div class="lbl">累计桩偏差</div></div>
-  <div class="insight-item"><div class="val"><span class="green">4.1<span class="unit">%</span></span></div><div class="lbl">平均偏差率</div></div>
+  <div class="insight-item"><div class="val"><span class="orange">23.7<span class="unit">kWh</span></span></div><div class="lbl">累计桩偏差</div></div>
+  <div class="insight-item"><div class="val"><span class="green">4.3<span class="unit">%</span></span></div><div class="lbl">平均偏差率</div></div>
 </div>
 
 <div class="insight-grid" style="margin-top:1px">
@@ -118,7 +118,7 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
 <div class="trend-section">
   <div class="trend-header"><span class="title">🔋 SOC 累计偏差 (桩损耗累加)</span><span class="unit">kWh</span></div>
   <div class="trend-chart-sm" id="driftChart"></div>
-  <div style="font-size:10px;color:var(--text3);margin-top:6px">累计偏差+17.59kWh · 趋势上升=电池可能在衰减 · 平稳=正常波动</div>
+  <div style="font-size:10px;color:var(--text3);margin-top:6px">累计偏差+23.67kWh · 趋势上升=电池可能在衰减 · 平稳=正常波动</div>
 </div>
 
 <div class="trend-section">
@@ -185,29 +185,41 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
         </div><div class="ranking-item">
           <div class="rank ">7</div>
           <div class="info">
+            <div class="eff"><span class="green">1.12x</span></div>
+            <div class="sub">2026-07-11 · 家庭慢充（国网-蒋家嘴镇） · 65.41kWh · 96% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank ">8</div>
+          <div class="info">
             <div class="eff"><span class="green">1.04x</span></div>
             <div class="sub">2026-05-27 · 麓山城资后湖艺术园6号停车场充电站 · 43.539kWh · 69% SOC</div>
           </div>
         </div><div class="ranking-item">
-          <div class="rank ">8</div>
+          <div class="rank ">9</div>
           <div class="info">
             <div class="eff"><span class="green">0.98x</span></div>
             <div class="sub">2026-06-06 · 株洲市国宾酒店充电站 · 45.962kWh · 77% SOC</div>
           </div>
         </div><div class="ranking-item">
-          <div class="rank ">9</div>
+          <div class="rank ">10</div>
+          <div class="info">
+            <div class="eff"><span class="green">0.98x</span></div>
+            <div class="sub">2026-07-05 · 风景园林二队超充站 · 53.327kWh · 89% SOC</div>
+          </div>
+        </div><div class="ranking-item">
+          <div class="rank ">11</div>
           <div class="info">
             <div class="eff"><span class="orange">0.93x</span></div>
             <div class="sub">2026-06-21 · 中国石化湘大路充电站 · 37.451kWh · 66% SOC</div>
           </div>
         </div><div class="ranking-item">
-          <div class="rank ">10</div>
+          <div class="rank ">12</div>
           <div class="info">
             <div class="eff"><span class="orange">0.91x</span></div>
             <div class="sub">2026-05-20 · 莲城充电-妇幼充电站 · 39.502kWh · 71% SOC</div>
           </div>
         </div><div class="ranking-item">
-          <div class="rank ">11</div>
+          <div class="rank ">13</div>
           <div class="info">
             <div class="eff"><span class="red">0.85x</span></div>
             <div class="sub">2026-06-19 · 风景园林二队超充站 · 28.83kWh · 56% SOC</div>
@@ -218,13 +230,13 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
 
 <div class="section-title">最近充电</div>
 <div class="latest-card">
-  <div class="station">2026-06-28 - 莲城充电-体育中心二期</div>
+  <div class="station">2026-07-11 - 家庭慢充（国网-蒋家嘴镇）</div>
   <div class="stats">
-    <span>电量 <b>55.656 kWh</b></span>
-    <span>金额 <b>¥32.84</b></span>
-    <span>单价 ¥0.59/度</span>
-    <span>SOC 13% → 93%</span>
-    <span>效率 <b>1.14x</b></span>
+    <span>电量 <b>65.41 kWh</b></span>
+    <span>金额 <b>¥34.36</b></span>
+    <span>单价 ¥0.53/度</span>
+    <span>SOC 4% → 100%</span>
+    <span>效率 <b>1.12x</b></span>
   </div>
 </div>
 
@@ -235,6 +247,36 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
       <thead><tr><th>日期</th><th>充电站</th><th>电量</th><th>金额</th><th>单价</th><th>SOC</th><th>效率</th><th>损耗</th><th></th></tr></thead>
       <tbody>
         <tr>
+          <td>2026-07-11</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">家庭慢充（国网-蒋家嘴镇）</td>
+          <td class="kwh">65.41</td>
+          <td class="amount">¥34.36</td>
+          <td>¥0.53</td>
+          <td>4%→100%</td>
+          <td>1.12x</td>
+          <td><span class="tag tag-hi">10.6%</span></td>
+          <td></td>
+        </tr><tr>
+          <td>2026-07-10</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">长沙市岳麓区施家港充电站</td>
+          <td class="kwh">38.464</td>
+          <td class="amount">¥43.08 <span class="coupon-badge">🎫¥10</span></td>
+          <td>¥1.12</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td><span style="font-size:10px;color:var(--text3)">¥1.38</span></td>
+        </tr><tr>
+          <td>2026-07-05</td>
+          <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">风景园林二队超充站</td>
+          <td class="kwh">53.327</td>
+          <td class="amount">¥28.80</td>
+          <td>¥0.54</td>
+          <td>11%→100%</td>
+          <td>0.98x</td>
+          <td><span class="tag tag-neg">1.6%</span></td>
+          <td></td>
+        </tr><tr>
           <td>2026-06-28</td>
           <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">莲城充电-体育中心二期</td>
           <td class="kwh">55.656</td>
@@ -352,8 +394,8 @@ tr:last-child td{border-bottom:none} td.amount{color:var(--red);font-weight:600}
 </div>
 
 <script>
-var DATA = [{"date": "2026-06-28", "station": "莲城充电-体育中心二期", "gun": "15号-15号", "duration_min": 51.1, "kwh": 55.656, "amount": 32.84, "unit_price": 0.59, "start_soc": 13.0, "end_soc": 93.0, "mileage": 3233.0, "driven_km": 278.0, "real_consumption": 20.02, "battery_calc_kwh": 48.72, "pile_loss": 6.94, "loss_rate": 12.5, "order_id": "20260628120410063475", "start_time": "12:05:16", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 1.14, "cost_per_km": 0.118}, {"date": "2026-06-21", "station": "中国石化湘大路充电站", "gun": "湘潭湘大路站2号桩-B", "duration_min": 46, "kwh": 37.451, "amount": 21.25, "unit_price": 0.57, "start_soc": 34.0, "end_soc": 100.0, "mileage": 2955.0, "driven_km": 233.0, "real_consumption": 16.07, "battery_calc_kwh": 40.19, "pile_loss": -2.74, "loss_rate": 7.3, "order_id": "", "start_time": "", "stop_method": "", "platform": "", "coupon": 0, "effective_unit_price": 0.57, "efficiency": 0.93, "cost_per_km": 0.091}, {"date": "2026-06-19", "station": "风景园林二队超充站", "gun": "风景园林二队1号机-G", "duration_min": 21.55, "kwh": 28.83, "amount": 17.01, "unit_price": 0.59, "start_soc": 22.0, "end_soc": 78.0, "mileage": 2722.0, "driven_km": 100.0, "real_consumption": 28.83, "battery_calc_kwh": 34.1, "pile_loss": -5.27, "loss_rate": 18.3, "order_id": "20260619124812045742", "start_time": "12:48:25", "stop_method": "APP远程停止", "platform": "湘潭莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 0.85, "cost_per_km": 0.17}, {"date": "2026-06-14", "station": "莲城充电-体育中心二期", "gun": "10号-10号", "duration_min": 46.38, "kwh": 50.843, "amount": 30.0, "unit_price": 0.59, "start_soc": 19.0, "end_soc": 92.0, "mileage": 2622.0, "driven_km": 242.0, "real_consumption": 21.01, "battery_calc_kwh": 44.46, "pile_loss": 6.38, "loss_rate": 12.5, "order_id": "20260614122310446515", "start_time": "12:23:56", "stop_method": "远程终止充电", "platform": "湘潭莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 1.14, "cost_per_km": 0.124}, {"date": "2026-06-06", "station": "株洲市国宾酒店充电站", "gun": "8830690000007090", "duration_min": 56.23, "kwh": 45.962, "amount": 26.11, "unit_price": 0.57, "start_soc": 23.0, "end_soc": 100.0, "mileage": 2380.0, "driven_km": 160.0, "real_consumption": 28.73, "battery_calc_kwh": 46.89, "pile_loss": -0.93, "loss_rate": 2.0, "order_id": "88306900000070900226060633083739", "start_time": "12:44:24", "stop_method": "充满自动停止", "platform": "国网桩", "coupon": 0, "effective_unit_price": 0.57, "efficiency": 0.98, "cost_per_km": 0.163}, {"date": "2026-05-31", "station": "莲城充电·湘潭交发体育中心充电站", "gun": "新能源体育中心2号-A", "duration_min": 21.23, "kwh": 20.871, "amount": 24.63, "unit_price": 1.18, "start_soc": 57.0, "end_soc": 86.0, "mileage": 2220.0, "driven_km": 174.0, "real_consumption": 11.99, "battery_calc_kwh": 17.66, "pile_loss": 3.21, "loss_rate": 15.4, "order_id": "20260531195014967719", "start_time": "19:50:27", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 1.18, "efficiency": 1.18, "cost_per_km": 0.142}, {"date": "2026-05-27", "station": "麓山城资后湖艺术园6号停车场充电站", "gun": "7037870201", "duration_min": 45, "kwh": 43.539, "amount": 53.99, "unit_price": 1.24, "start_soc": 30.0, "end_soc": 99.0, "mileage": 2046.0, "driven_km": 229.0, "real_consumption": 19.01, "battery_calc_kwh": 42.02, "pile_loss": 1.52, "loss_rate": 3.5, "order_id": "B20260527192857607135", "start_time": "19:29:27", "stop_method": "自动终止", "platform": "星星充电", "coupon": 0, "effective_unit_price": 1.24, "efficiency": 1.04, "cost_per_km": 0.236}, {"date": "2026-05-23", "station": "宇泰智充棠塘小区充电站", "gun": "204612000200002401", "duration_min": 48.98, "kwh": 36.579, "amount": 32.19, "unit_price": 0.88, "start_soc": 42.0, "end_soc": 95.0, "mileage": 1817.0, "driven_km": 205.0, "real_consumption": 17.84, "battery_calc_kwh": 32.28, "pile_loss": 4.3, "loss_rate": 11.8, "order_id": "101437000177951747923504802", "start_time": "14:24:50", "stop_method": "", "platform": "小桔充电", "coupon": 0, "effective_unit_price": 0.88, "efficiency": 1.13, "cost_per_km": 0.157}, {"date": "2026-05-20", "station": "莲城充电-妇幼充电站", "gun": "二号-2A", "duration_min": 36.9, "kwh": 39.502, "amount": 46.61, "unit_price": 1.18, "start_soc": 29.0, "end_soc": 100.0, "mileage": 1612.0, "driven_km": 154.0, "real_consumption": 25.65, "battery_calc_kwh": 43.24, "pile_loss": -3.74, "loss_rate": 9.5, "order_id": "20260520195915225173", "start_time": "20:00:28", "stop_method": "收到BST(SOC满足)", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 1.18, "efficiency": 0.91, "cost_per_km": 0.303}, {"date": "2026-05-16", "station": "中国石化湘大路充电站", "gun": "湘潭湘大路站3号桩-A", "duration_min": 29, "kwh": 40.275, "amount": 47.99, "unit_price": 1.19, "start_soc": 21.0, "end_soc": 80.0, "mileage": 1458.0, "driven_km": null, "real_consumption": null, "battery_calc_kwh": 35.93, "pile_loss": 4.34, "loss_rate": 10.8, "order_id": "4601000005162601", "start_time": "20:45", "stop_method": "余额不足，充电中止", "platform": "中国石化", "coupon": 0, "effective_unit_price": 1.19, "efficiency": 1.12, "cost_per_km": null}, {"date": "2026-05-14", "station": "比亚迪长沙天心4S店超充站", "gun": "CN00335701101A", "duration_min": 23, "kwh": 33.41, "amount": 34.41, "unit_price": 1.03, "start_soc": 40.0, "end_soc": 89.0, "mileage": null, "driven_km": null, "real_consumption": null, "battery_calc_kwh": 29.84, "pile_loss": 3.57, "loss_rate": 10.7, "order_id": "7917385530010dc0bbe12c34000", "start_time": "19:02:24", "stop_method": "", "platform": "比亚迪闪充", "coupon": 0, "effective_unit_price": 1.03, "efficiency": 1.12, "cost_per_km": null}];
-var SUMMARY = {"total_charges": 11, "total_kwh": 432.92, "total_amount": 367.03, "total_coupon": 0, "avg_price": 0.85, "avg_per_charge": 33.37, "total_hours": 7.1, "total_hours_int": 7, "total_mins_int": 5, "avg_duration_hours": 0.6, "avg_interval_days": 4.5, "total_days": 46, "total_driven": 1775.0, "total_mileage": 3233.0, "avg_consumption": 20.24, "cost_per_100km": 20.68, "km_per_kwh": 4.1, "total_pile_loss": 17.59, "avg_loss_rate": 4.1, "soc_record_count": 11, "soc_drift": [{"date": "2026-05-14", "pile_loss": 3.57, "cumulative_loss": 3.57, "loss_rate": 10.7}, {"date": "2026-05-16", "pile_loss": 4.34, "cumulative_loss": 7.91, "loss_rate": 10.8}, {"date": "2026-05-20", "pile_loss": -3.74, "cumulative_loss": 4.17, "loss_rate": 9.5}, {"date": "2026-05-23", "pile_loss": 4.3, "cumulative_loss": 8.47, "loss_rate": 11.8}, {"date": "2026-05-27", "pile_loss": 1.52, "cumulative_loss": 9.99, "loss_rate": 3.5}, {"date": "2026-05-31", "pile_loss": 3.21, "cumulative_loss": 13.2, "loss_rate": 15.4}, {"date": "2026-06-06", "pile_loss": -0.93, "cumulative_loss": 12.27, "loss_rate": 2.0}, {"date": "2026-06-14", "pile_loss": 6.38, "cumulative_loss": 18.65, "loss_rate": 12.5}, {"date": "2026-06-19", "pile_loss": -5.27, "cumulative_loss": 13.38, "loss_rate": 18.3}, {"date": "2026-06-21", "pile_loss": -2.74, "cumulative_loss": 10.64, "loss_rate": 7.3}, {"date": "2026-06-28", "pile_loss": 6.94, "cumulative_loss": 17.58, "loss_rate": 12.5}], "avg_efficiency": 1.049, "best_efficiency": {"date": "2026-05-31", "station": "莲城充电·湘潭交发体育中心充电站", "gun": "新能源体育中心2号-A", "duration_min": 21.23, "kwh": 20.871, "amount": 24.63, "unit_price": 1.18, "start_soc": 57.0, "end_soc": 86.0, "mileage": 2220.0, "driven_km": 174.0, "real_consumption": 11.99, "battery_calc_kwh": 17.66, "pile_loss": 3.21, "loss_rate": 15.4, "order_id": "20260531195014967719", "start_time": "19:50:27", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 1.18, "efficiency": 1.18, "cost_per_km": 0.142}, "worst_efficiency": {"date": "2026-06-19", "station": "风景园林二队超充站", "gun": "风景园林二队1号机-G", "duration_min": 21.55, "kwh": 28.83, "amount": 17.01, "unit_price": 0.59, "start_soc": 22.0, "end_soc": 78.0, "mileage": 2722.0, "driven_km": 100.0, "real_consumption": 28.83, "battery_calc_kwh": 34.1, "pile_loss": -5.27, "loss_rate": 18.3, "order_id": "20260619124812045742", "start_time": "12:48:25", "stop_method": "APP远程停止", "platform": "湘潭莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 0.85, "cost_per_km": 0.17}, "efficiency_ranking": [{"date": "2026-05-31", "station": "莲城充电·湘潭交发体育中心充电站", "efficiency": 1.18, "kwh": 20.871, "soc_change": 29.0}, {"date": "2026-06-14", "station": "莲城充电-体育中心二期", "efficiency": 1.14, "kwh": 50.843, "soc_change": 73.0}, {"date": "2026-06-28", "station": "莲城充电-体育中心二期", "efficiency": 1.14, "kwh": 55.656, "soc_change": 80.0}, {"date": "2026-05-23", "station": "宇泰智充棠塘小区充电站", "efficiency": 1.13, "kwh": 36.579, "soc_change": 53.0}, {"date": "2026-05-14", "station": "比亚迪长沙天心4S店超充站", "efficiency": 1.12, "kwh": 33.41, "soc_change": 49.0}, {"date": "2026-05-16", "station": "中国石化湘大路充电站", "efficiency": 1.12, "kwh": 40.275, "soc_change": 59.0}, {"date": "2026-05-27", "station": "麓山城资后湖艺术园6号停车场充电站", "efficiency": 1.04, "kwh": 43.539, "soc_change": 69.0}, {"date": "2026-06-06", "station": "株洲市国宾酒店充电站", "efficiency": 0.98, "kwh": 45.962, "soc_change": 77.0}, {"date": "2026-06-21", "station": "中国石化湘大路充电站", "efficiency": 0.93, "kwh": 37.451, "soc_change": 66.0}, {"date": "2026-05-20", "station": "莲城充电-妇幼充电站", "efficiency": 0.91, "kwh": 39.502, "soc_change": 71.0}, {"date": "2026-06-19", "station": "风景园林二队超充站", "efficiency": 0.85, "kwh": 28.83, "soc_change": 56.0}], "efficiency_trend": [{"date": "2026-05-14", "efficiency": 1.12}, {"date": "2026-05-16", "efficiency": 1.12}, {"date": "2026-05-20", "efficiency": 0.91}, {"date": "2026-05-23", "efficiency": 1.13}, {"date": "2026-05-27", "efficiency": 1.04}, {"date": "2026-05-31", "efficiency": 1.18}, {"date": "2026-06-06", "efficiency": 0.98}, {"date": "2026-06-14", "efficiency": 1.14}, {"date": "2026-06-19", "efficiency": 0.85}, {"date": "2026-06-21", "efficiency": 0.93}, {"date": "2026-06-28", "efficiency": 1.14}], "cost_per_km_trend": [{"date": "2026-05-20", "cost_per_km": 0.303}, {"date": "2026-05-23", "cost_per_km": 0.157}, {"date": "2026-05-27", "cost_per_km": 0.236}, {"date": "2026-05-31", "cost_per_km": 0.142}, {"date": "2026-06-06", "cost_per_km": 0.163}, {"date": "2026-06-14", "cost_per_km": 0.124}, {"date": "2026-06-19", "cost_per_km": 0.17}, {"date": "2026-06-21", "cost_per_km": 0.091}, {"date": "2026-06-28", "cost_per_km": 0.118}], "latest": {"date": "2026-06-28", "station": "莲城充电-体育中心二期", "gun": "15号-15号", "duration_min": 51.1, "kwh": 55.656, "amount": 32.84, "unit_price": 0.59, "start_soc": 13.0, "end_soc": 93.0, "mileage": 3233.0, "driven_km": 278.0, "real_consumption": 20.02, "battery_calc_kwh": 48.72, "pile_loss": 6.94, "loss_rate": 12.5, "order_id": "20260628120410063475", "start_time": "12:05:16", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 1.14, "cost_per_km": 0.118}, "battery_capacity": 60.9, "vehicle": "比亚迪海狮05EV", "spend_trend": [{"date": "2026-05-14", "amount": 34.41}, {"date": "2026-05-16", "amount": 47.99}, {"date": "2026-05-20", "amount": 46.61}, {"date": "2026-05-23", "amount": 32.19}, {"date": "2026-05-27", "amount": 53.99}, {"date": "2026-05-31", "amount": 24.63}, {"date": "2026-06-06", "amount": 26.11}, {"date": "2026-06-14", "amount": 30.0}, {"date": "2026-06-19", "amount": 17.01}, {"date": "2026-06-21", "amount": 21.25}, {"date": "2026-06-28", "amount": 32.84}], "charge_calendar": {"2026-05-14": 1, "2026-05-16": 1, "2026-05-20": 1, "2026-05-23": 1, "2026-05-27": 1, "2026-05-31": 1, "2026-06-06": 1, "2026-06-14": 1, "2026-06-19": 1, "2026-06-21": 1, "2026-06-28": 1}, "first_date": "2026-05-14"};
+var DATA = [{"date": "2026-07-11", "station": "家庭慢充（国网-蒋家嘴镇）", "gun": "", "duration_min": null, "kwh": 65.41, "amount": 34.36, "unit_price": 0.53, "start_soc": 4.0, "end_soc": 100.0, "mileage": 4024.0, "driven_km": 254.0, "real_consumption": 25.75, "battery_calc_kwh": 58.46, "pile_loss": 6.95, "loss_rate": 10.6, "order_id": "", "start_time": "", "stop_method": "", "platform": "网上国网", "coupon": 0, "effective_unit_price": 0.53, "efficiency": 1.12, "cost_per_km": 0.135}, {"date": "2026-07-10", "station": "长沙市岳麓区施家港充电站", "gun": "", "duration_min": 27.85, "kwh": 38.464, "amount": 43.08, "unit_price": 1.12, "start_soc": 13.0, "end_soc": null, "mileage": 3770.0, "driven_km": 277.0, "real_consumption": 13.89, "battery_calc_kwh": null, "pile_loss": null, "loss_rate": null, "order_id": "101437000178368247223504952", "start_time": "", "stop_method": "", "platform": "", "coupon": 10.0, "effective_unit_price": 1.38, "efficiency": null, "cost_per_km": 0.156}, {"date": "2026-07-05", "station": "风景园林二队超充站", "gun": "风景园林二队1号机-F", "duration_min": 49.37, "kwh": 53.327, "amount": 28.8, "unit_price": 0.54, "start_soc": 11.0, "end_soc": 100.0, "mileage": 3493.0, "driven_km": 260.0, "real_consumption": 20.51, "battery_calc_kwh": 54.2, "pile_loss": -0.87, "loss_rate": 1.6, "order_id": "20260705122614545781", "start_time": "12:26", "stop_method": "自动充满", "platform": "特来电", "coupon": 0, "effective_unit_price": 0.54, "efficiency": 0.98, "cost_per_km": 0.111}, {"date": "2026-06-28", "station": "莲城充电-体育中心二期", "gun": "15号-15号", "duration_min": 51.1, "kwh": 55.656, "amount": 32.84, "unit_price": 0.59, "start_soc": 13.0, "end_soc": 93.0, "mileage": 3233.0, "driven_km": 278.0, "real_consumption": 20.02, "battery_calc_kwh": 48.72, "pile_loss": 6.94, "loss_rate": 12.5, "order_id": "20260628120410063475", "start_time": "12:05:16", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 1.14, "cost_per_km": 0.118}, {"date": "2026-06-21", "station": "中国石化湘大路充电站", "gun": "湘潭湘大路站2号桩-B", "duration_min": 46, "kwh": 37.451, "amount": 21.25, "unit_price": 0.57, "start_soc": 34.0, "end_soc": 100.0, "mileage": 2955.0, "driven_km": 233.0, "real_consumption": 16.07, "battery_calc_kwh": 40.19, "pile_loss": -2.74, "loss_rate": 7.3, "order_id": "", "start_time": "", "stop_method": "", "platform": "", "coupon": 0, "effective_unit_price": 0.57, "efficiency": 0.93, "cost_per_km": 0.091}, {"date": "2026-06-19", "station": "风景园林二队超充站", "gun": "风景园林二队1号机-G", "duration_min": 21.55, "kwh": 28.83, "amount": 17.01, "unit_price": 0.59, "start_soc": 22.0, "end_soc": 78.0, "mileage": 2722.0, "driven_km": 100.0, "real_consumption": 28.83, "battery_calc_kwh": 34.1, "pile_loss": -5.27, "loss_rate": 18.3, "order_id": "20260619124812045742", "start_time": "12:48:25", "stop_method": "APP远程停止", "platform": "湘潭莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 0.85, "cost_per_km": 0.17}, {"date": "2026-06-14", "station": "莲城充电-体育中心二期", "gun": "10号-10号", "duration_min": 46.38, "kwh": 50.843, "amount": 30.0, "unit_price": 0.59, "start_soc": 19.0, "end_soc": 92.0, "mileage": 2622.0, "driven_km": 242.0, "real_consumption": 21.01, "battery_calc_kwh": 44.46, "pile_loss": 6.38, "loss_rate": 12.5, "order_id": "20260614122310446515", "start_time": "12:23:56", "stop_method": "远程终止充电", "platform": "湘潭莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 1.14, "cost_per_km": 0.124}, {"date": "2026-06-06", "station": "株洲市国宾酒店充电站", "gun": "8830690000007090", "duration_min": 56.23, "kwh": 45.962, "amount": 26.11, "unit_price": 0.57, "start_soc": 23.0, "end_soc": 100.0, "mileage": 2380.0, "driven_km": 160.0, "real_consumption": 28.73, "battery_calc_kwh": 46.89, "pile_loss": -0.93, "loss_rate": 2.0, "order_id": "88306900000070900226060633083739", "start_time": "12:44:24", "stop_method": "充满自动停止", "platform": "国网桩", "coupon": 0, "effective_unit_price": 0.57, "efficiency": 0.98, "cost_per_km": 0.163}, {"date": "2026-05-31", "station": "莲城充电·湘潭交发体育中心充电站", "gun": "新能源体育中心2号-A", "duration_min": 21.23, "kwh": 20.871, "amount": 24.63, "unit_price": 1.18, "start_soc": 57.0, "end_soc": 86.0, "mileage": 2220.0, "driven_km": 174.0, "real_consumption": 11.99, "battery_calc_kwh": 17.66, "pile_loss": 3.21, "loss_rate": 15.4, "order_id": "20260531195014967719", "start_time": "19:50:27", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 1.18, "efficiency": 1.18, "cost_per_km": 0.142}, {"date": "2026-05-27", "station": "麓山城资后湖艺术园6号停车场充电站", "gun": "7037870201", "duration_min": 45, "kwh": 43.539, "amount": 53.99, "unit_price": 1.24, "start_soc": 30.0, "end_soc": 99.0, "mileage": 2046.0, "driven_km": 229.0, "real_consumption": 19.01, "battery_calc_kwh": 42.02, "pile_loss": 1.52, "loss_rate": 3.5, "order_id": "B20260527192857607135", "start_time": "19:29:27", "stop_method": "自动终止", "platform": "星星充电", "coupon": 0, "effective_unit_price": 1.24, "efficiency": 1.04, "cost_per_km": 0.236}, {"date": "2026-05-23", "station": "宇泰智充棠塘小区充电站", "gun": "204612000200002401", "duration_min": 48.98, "kwh": 36.579, "amount": 32.19, "unit_price": 0.88, "start_soc": 42.0, "end_soc": 95.0, "mileage": 1817.0, "driven_km": 205.0, "real_consumption": 17.84, "battery_calc_kwh": 32.28, "pile_loss": 4.3, "loss_rate": 11.8, "order_id": "101437000177951747923504802", "start_time": "14:24:50", "stop_method": "", "platform": "小桔充电", "coupon": 0, "effective_unit_price": 0.88, "efficiency": 1.13, "cost_per_km": 0.157}, {"date": "2026-05-20", "station": "莲城充电-妇幼充电站", "gun": "二号-2A", "duration_min": 36.9, "kwh": 39.502, "amount": 46.61, "unit_price": 1.18, "start_soc": 29.0, "end_soc": 100.0, "mileage": 1612.0, "driven_km": 154.0, "real_consumption": 25.65, "battery_calc_kwh": 43.24, "pile_loss": -3.74, "loss_rate": 9.5, "order_id": "20260520195915225173", "start_time": "20:00:28", "stop_method": "收到BST(SOC满足)", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 1.18, "efficiency": 0.91, "cost_per_km": 0.303}, {"date": "2026-05-16", "station": "中国石化湘大路充电站", "gun": "湘潭湘大路站3号桩-A", "duration_min": 29, "kwh": 40.275, "amount": 47.99, "unit_price": 1.19, "start_soc": 21.0, "end_soc": 80.0, "mileage": 1458.0, "driven_km": null, "real_consumption": null, "battery_calc_kwh": 35.93, "pile_loss": 4.34, "loss_rate": 10.8, "order_id": "4601000005162601", "start_time": "20:45", "stop_method": "余额不足，充电中止", "platform": "中国石化", "coupon": 0, "effective_unit_price": 1.19, "efficiency": 1.12, "cost_per_km": null}, {"date": "2026-05-14", "station": "比亚迪长沙天心4S店超充站", "gun": "CN00335701101A", "duration_min": 23, "kwh": 33.41, "amount": 34.41, "unit_price": 1.03, "start_soc": 40.0, "end_soc": 89.0, "mileage": null, "driven_km": null, "real_consumption": null, "battery_calc_kwh": 29.84, "pile_loss": 3.57, "loss_rate": 10.7, "order_id": "7917385530010dc0bbe12c34000", "start_time": "19:02:24", "stop_method": "", "platform": "比亚迪闪充", "coupon": 0, "effective_unit_price": 1.03, "efficiency": 1.12, "cost_per_km": null}];
+var SUMMARY = {"total_charges": 14, "total_kwh": 590.12, "total_amount": 473.27, "total_coupon": 10.0, "avg_price": 0.8, "avg_per_charge": 33.8, "total_hours": 8.4, "total_hours_int": 8, "total_mins_int": 24, "avg_duration_hours": 0.6, "avg_interval_days": 4.5, "total_days": 59, "total_driven": 2566.0, "total_mileage": 4024.0, "avg_consumption": 20.13, "cost_per_100km": 18.44, "km_per_kwh": 4.35, "total_pile_loss": 23.67, "avg_loss_rate": 4.3, "soc_record_count": 13, "soc_drift": [{"date": "2026-05-14", "pile_loss": 3.57, "cumulative_loss": 3.57, "loss_rate": 10.7}, {"date": "2026-05-16", "pile_loss": 4.34, "cumulative_loss": 7.91, "loss_rate": 10.8}, {"date": "2026-05-20", "pile_loss": -3.74, "cumulative_loss": 4.17, "loss_rate": 9.5}, {"date": "2026-05-23", "pile_loss": 4.3, "cumulative_loss": 8.47, "loss_rate": 11.8}, {"date": "2026-05-27", "pile_loss": 1.52, "cumulative_loss": 9.99, "loss_rate": 3.5}, {"date": "2026-05-31", "pile_loss": 3.21, "cumulative_loss": 13.2, "loss_rate": 15.4}, {"date": "2026-06-06", "pile_loss": -0.93, "cumulative_loss": 12.27, "loss_rate": 2.0}, {"date": "2026-06-14", "pile_loss": 6.38, "cumulative_loss": 18.65, "loss_rate": 12.5}, {"date": "2026-06-19", "pile_loss": -5.27, "cumulative_loss": 13.38, "loss_rate": 18.3}, {"date": "2026-06-21", "pile_loss": -2.74, "cumulative_loss": 10.64, "loss_rate": 7.3}, {"date": "2026-06-28", "pile_loss": 6.94, "cumulative_loss": 17.58, "loss_rate": 12.5}, {"date": "2026-07-05", "pile_loss": -0.87, "cumulative_loss": 16.71, "loss_rate": 1.6}, {"date": "2026-07-11", "pile_loss": 6.95, "cumulative_loss": 23.66, "loss_rate": 10.6}], "avg_efficiency": 1.049, "best_efficiency": {"date": "2026-05-31", "station": "莲城充电·湘潭交发体育中心充电站", "gun": "新能源体育中心2号-A", "duration_min": 21.23, "kwh": 20.871, "amount": 24.63, "unit_price": 1.18, "start_soc": 57.0, "end_soc": 86.0, "mileage": 2220.0, "driven_km": 174.0, "real_consumption": 11.99, "battery_calc_kwh": 17.66, "pile_loss": 3.21, "loss_rate": 15.4, "order_id": "20260531195014967719", "start_time": "19:50:27", "stop_method": "远程终止充电", "platform": "莲城充电", "coupon": 0, "effective_unit_price": 1.18, "efficiency": 1.18, "cost_per_km": 0.142}, "worst_efficiency": {"date": "2026-06-19", "station": "风景园林二队超充站", "gun": "风景园林二队1号机-G", "duration_min": 21.55, "kwh": 28.83, "amount": 17.01, "unit_price": 0.59, "start_soc": 22.0, "end_soc": 78.0, "mileage": 2722.0, "driven_km": 100.0, "real_consumption": 28.83, "battery_calc_kwh": 34.1, "pile_loss": -5.27, "loss_rate": 18.3, "order_id": "20260619124812045742", "start_time": "12:48:25", "stop_method": "APP远程停止", "platform": "湘潭莲城充电", "coupon": 0, "effective_unit_price": 0.59, "efficiency": 0.85, "cost_per_km": 0.17}, "efficiency_ranking": [{"date": "2026-05-31", "station": "莲城充电·湘潭交发体育中心充电站", "efficiency": 1.18, "kwh": 20.871, "soc_change": 29.0}, {"date": "2026-06-14", "station": "莲城充电-体育中心二期", "efficiency": 1.14, "kwh": 50.843, "soc_change": 73.0}, {"date": "2026-06-28", "station": "莲城充电-体育中心二期", "efficiency": 1.14, "kwh": 55.656, "soc_change": 80.0}, {"date": "2026-05-23", "station": "宇泰智充棠塘小区充电站", "efficiency": 1.13, "kwh": 36.579, "soc_change": 53.0}, {"date": "2026-05-14", "station": "比亚迪长沙天心4S店超充站", "efficiency": 1.12, "kwh": 33.41, "soc_change": 49.0}, {"date": "2026-05-16", "station": "中国石化湘大路充电站", "efficiency": 1.12, "kwh": 40.275, "soc_change": 59.0}, {"date": "2026-07-11", "station": "家庭慢充（国网-蒋家嘴镇）", "efficiency": 1.12, "kwh": 65.41, "soc_change": 96.0}, {"date": "2026-05-27", "station": "麓山城资后湖艺术园6号停车场充电站", "efficiency": 1.04, "kwh": 43.539, "soc_change": 69.0}, {"date": "2026-06-06", "station": "株洲市国宾酒店充电站", "efficiency": 0.98, "kwh": 45.962, "soc_change": 77.0}, {"date": "2026-07-05", "station": "风景园林二队超充站", "efficiency": 0.98, "kwh": 53.327, "soc_change": 89.0}, {"date": "2026-06-21", "station": "中国石化湘大路充电站", "efficiency": 0.93, "kwh": 37.451, "soc_change": 66.0}, {"date": "2026-05-20", "station": "莲城充电-妇幼充电站", "efficiency": 0.91, "kwh": 39.502, "soc_change": 71.0}, {"date": "2026-06-19", "station": "风景园林二队超充站", "efficiency": 0.85, "kwh": 28.83, "soc_change": 56.0}], "efficiency_trend": [{"date": "2026-05-14", "efficiency": 1.12}, {"date": "2026-05-16", "efficiency": 1.12}, {"date": "2026-05-20", "efficiency": 0.91}, {"date": "2026-05-23", "efficiency": 1.13}, {"date": "2026-05-27", "efficiency": 1.04}, {"date": "2026-05-31", "efficiency": 1.18}, {"date": "2026-06-06", "efficiency": 0.98}, {"date": "2026-06-14", "efficiency": 1.14}, {"date": "2026-06-19", "efficiency": 0.85}, {"date": "2026-06-21", "efficiency": 0.93}, {"date": "2026-06-28", "efficiency": 1.14}, {"date": "2026-07-05", "efficiency": 0.98}, {"date": "2026-07-11", "efficiency": 1.12}], "cost_per_km_trend": [{"date": "2026-05-20", "cost_per_km": 0.303}, {"date": "2026-05-23", "cost_per_km": 0.157}, {"date": "2026-05-27", "cost_per_km": 0.236}, {"date": "2026-05-31", "cost_per_km": 0.142}, {"date": "2026-06-06", "cost_per_km": 0.163}, {"date": "2026-06-14", "cost_per_km": 0.124}, {"date": "2026-06-19", "cost_per_km": 0.17}, {"date": "2026-06-21", "cost_per_km": 0.091}, {"date": "2026-06-28", "cost_per_km": 0.118}, {"date": "2026-07-05", "cost_per_km": 0.111}, {"date": "2026-07-10", "cost_per_km": 0.156}, {"date": "2026-07-11", "cost_per_km": 0.135}], "latest": {"date": "2026-07-11", "station": "家庭慢充（国网-蒋家嘴镇）", "gun": "", "duration_min": null, "kwh": 65.41, "amount": 34.36, "unit_price": 0.53, "start_soc": 4.0, "end_soc": 100.0, "mileage": 4024.0, "driven_km": 254.0, "real_consumption": 25.75, "battery_calc_kwh": 58.46, "pile_loss": 6.95, "loss_rate": 10.6, "order_id": "", "start_time": "", "stop_method": "", "platform": "网上国网", "coupon": 0, "effective_unit_price": 0.53, "efficiency": 1.12, "cost_per_km": 0.135}, "battery_capacity": 60.9, "vehicle": "比亚迪海狮05EV", "spend_trend": [{"date": "2026-05-14", "amount": 34.41}, {"date": "2026-05-16", "amount": 47.99}, {"date": "2026-05-20", "amount": 46.61}, {"date": "2026-05-23", "amount": 32.19}, {"date": "2026-05-27", "amount": 53.99}, {"date": "2026-05-31", "amount": 24.63}, {"date": "2026-06-06", "amount": 26.11}, {"date": "2026-06-14", "amount": 30.0}, {"date": "2026-06-19", "amount": 17.01}, {"date": "2026-06-21", "amount": 21.25}, {"date": "2026-06-28", "amount": 32.84}, {"date": "2026-07-05", "amount": 28.8}, {"date": "2026-07-10", "amount": 43.08}, {"date": "2026-07-11", "amount": 34.36}], "charge_calendar": {"2026-05-14": 1, "2026-05-16": 1, "2026-05-20": 1, "2026-05-23": 1, "2026-05-27": 1, "2026-05-31": 1, "2026-06-06": 1, "2026-06-14": 1, "2026-06-19": 1, "2026-06-21": 1, "2026-06-28": 1, "2026-07-05": 1, "2026-07-10": 1, "2026-07-11": 1}, "first_date": "2026-05-14"};
 </script>
 <script>
 (function(){

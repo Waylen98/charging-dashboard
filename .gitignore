@@ -1,0 +1,15 @@
+# 生成产物（由 generate.py 生成，不入版本库）
+index.html
+
+# 部署临时目录与 wrangler 状态
+dist/
+.wrangler/
+
+# 密钥 / 二进制 / 旧数据格式
+*.exe
+*.xlsx
+tunnel_url.txt
+
+# Python
+__pycache__/
+*.pyc

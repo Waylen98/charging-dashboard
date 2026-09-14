@@ -326,13 +326,12 @@
     "duration_min": 44.85,
     "kwh": 44.159,
     "amount": 24.73,
-    "start_soc": 32.0,
-    "end_soc": 95.0,
-    "mileage": 5860.0,
-    "coupon": 0.0,
+    "start_soc": 32,
+    "end_soc": 95,
+    "mileage": 5860,
+    "coupon": 0,
     "order_id": "20250101100001072026083013065459",
     "start_time": "13:06:16",
-    "stop_method": "",
     "platform": "莲城充电"
   }
 ]

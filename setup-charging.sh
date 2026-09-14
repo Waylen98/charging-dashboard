@@ -11,8 +11,11 @@ CHARGING_DIR="/srv/charging"
 command -v useradd >/dev/null || { echo "ERROR: useradd 不可用"; exit 1; }
 [ -f /home/lifeos/charging/receive.py ] || { echo "ERROR: /home/lifeos/charging/receive.py 不存在，先由 lifeos 部署"; exit 1; }
 
-# 1. 创建专用账号（无密码、无交互 shell）
-id -u "$CHARGING_USER" >/dev/null 2>&1 || useradd -r -m -s /usr/sbin/nologin "$CHARGING_USER"
+# 1. 创建专用账号（无密码；shell 用 /bin/sh 才能执行 forced command，
+#    nologin 会连 forced command 一起拒绝。安全由 authorized_keys 的
+#    command=锁 + restrict 保证，与 gitolite 同一模式）
+id -u "$CHARGING_USER" >/dev/null 2>&1 || useradd -r -m -s /bin/sh "$CHARGING_USER"
+[ "$(getent passwd "$CHARGING_USER" | cut -d: -f7)" = "/bin/sh" ] || usermod -s /bin/sh "$CHARGING_USER"
 
 # 2. 数据目录（从 lifeos 家目录迁移到 /srv，独立于生产）
 mkdir -p "$CHARGING_DIR"

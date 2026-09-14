@@ -21,10 +21,11 @@ for f in generate.py receive.py charging_records.json .github_token; do
 done
 chmod 600 "$CHARGING_DIR/.github_token"
 
-# 3. forced command 授权：WorkBuddy 只能执行 receive.py，拿不到 shell
+# 3. forced command 授权：钥匙必须放在账号家目录（sshd 默认只认 ~/.ssh/authorized_keys）
 #    幂等：已存在的公钥跳过，多次运行不覆盖彼此
-install -d -m 700 -o "$CHARGING_USER" -g "$CHARGING_USER" "$CHARGING_DIR/.ssh"
-AUTH_KEYS="$CHARGING_DIR/.ssh/authorized_keys"
+CHARGING_HOME=$(getent passwd "$CHARGING_USER" | cut -d: -f6)
+install -d -m 700 -o "$CHARGING_USER" -g "$CHARGING_USER" "$CHARGING_HOME/.ssh"
+AUTH_KEYS="$CHARGING_HOME/.ssh/authorized_keys"
 touch "$AUTH_KEYS"
 KEY_LINE=$(printf 'command="python3 %s/receive.py",restrict,no-port-forwarding,no-agent-forwarding,no-X11-forwarding,no-pty %s' \
   "$CHARGING_DIR" "$PUBKEY")
@@ -35,6 +36,8 @@ else
 fi
 chown "$CHARGING_USER":"$CHARGING_USER" "$AUTH_KEYS"
 chmod 600 "$AUTH_KEYS"
+rm -f "$CHARGING_DIR/.ssh/authorized_keys" 2>/dev/null || true
+rmdir "$CHARGING_DIR/.ssh" 2>/dev/null || true
 
 # 4. 目录归属（python 可读写 charging_records.json / index.html）
 chown -R "$CHARGING_USER":"$CHARGING_USER" "$CHARGING_DIR"

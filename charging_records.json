@@ -357,6 +357,8 @@
     "duration_min": 53,
     "kwh": 51.175,
     "amount": 31.73,
+    "start_soc": 22,
+    "end_soc": 100,
     "mileage": 6492,
     "coupon": 0,
     "order_id": "20250101100001062026091912074066",

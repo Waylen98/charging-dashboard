@@ -364,5 +364,20 @@
     "order_id": "20250101100001062026091912074066",
     "start_time": "12:07:45",
     "platform": "莲城充电"
+  },
+  {
+    "date": "2026-09-25",
+    "station": "连通性自测-TEST-请删除",
+    "gun": "test",
+    "duration_min": 1,
+    "kwh": 0.001,
+    "amount": 0.01,
+    "start_soc": 50,
+    "end_soc": 50,
+    "mileage": 0,
+    "coupon": 0,
+    "order_id": "test-conn-20260925-DELETE",
+    "start_time": "00:00:00",
+    "platform": "测试"
   }
 ]

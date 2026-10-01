@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fa"><meta name="description" content="我的海狮 05 EV 充电账本：花费、电价和每一次充电记录。">
+  <title>充能有数 · 我的充电账本</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23194766'/%3E%3Cpath d='M35 10 17 35h14l-2 19 19-27H34z' fill='%23caf29b'/%3E%3C/svg%3E">
+  <!-- INLINE_STYLE -->
+</head>
+<body>
+  <a class="skip" href="#main">跳到充电概览</a>
+  <header class="topbar"><div class="topbar-inner">
+    <a class="brand" href="#main"><span class="brand-icon" aria-hidden="true">ϟ</span><span>充能有数<small>MY CHARGING JOURNAL</small></span></a>
+    <nav aria-label="页面导航"><a href="#main" class="nav-active">概览</a><a href="#history">充电记录</a></nav>
+    <span class="vehicle"><span aria-hidden="true" class="status-dot"></span>海狮 05 EV</span>
+  </div></header>
+  <main id="main" class="wrap">
+    <section class="page-heading"><div><p class="eyebrow">一程一记 · 日常用车</p><h1>每一次充电，都有数。</h1><p class="subtitle">看清花费，记住每一程。</p></div><label class="period-control">统计范围<select id="period" aria-label="统计月份"></select></label></section>
+    <section class="overview" aria-label="充电概览">
+      <article class="expense-card"><div class="card-top"><span id="expense-label">实付花费</span><span class="expense-symbol" aria-hidden="true">↗</span></div><p class="main-amount"><span>¥</span><strong id="expense">—</strong></p><div class="expense-foot"><span id="expense-caption">正在读取记录</span><span id="coupon-caption"></span></div></article>
+      <article class="metric-card"><span class="metric-icon" aria-hidden="true">¥</span><p class="metric-label">平均实付电价</p><p class="metric-value"><strong id="price">—</strong><span>元 / 度</span></p><p class="metric-help">总实付 ÷ 总充电量</p></article>
+      <article class="metric-card"><span class="metric-icon energy-icon" aria-hidden="true">ϟ</span><p class="metric-label">充入电量</p><p class="metric-value"><strong id="energy">—</strong><span>kWh</span></p><p class="metric-help" id="energy-caption">—</p></article>
+    </section>
+    <section class="middle-grid">
+      <article class="panel trend-panel"><div class="panel-heading"><div><h2>花费的变化</h2><p id="trend-caption">按月看，每个月更清楚。</p></div><div class="segmented" role="group" aria-label="趋势指标"><button type="button" id="trend-spend" aria-pressed="true">花费</button><button type="button" id="trend-price" aria-pressed="false">电价</button></div></div><div id="trend" class="trend" role="group" aria-label="月度充电花费图"></div><div class="trend-foot"><span><i class="legend-dot"></i><span id="trend-unit">实付花费 · 元</span></span><span>点击月份查看记录</span></div></article>
+      <article class="panel latest-panel"><div class="panel-heading"><div><h2>最近一次充电</h2><p id="latest-date">—</p></div><span class="small-bolt" aria-hidden="true">ϟ</span></div><div id="latest"></div></article>
+    </section>
+    <section class="panel station-panel"><div class="panel-heading"><div><h2>常去的充电站</h2><p>所选范围内的实付电价与充电次数。</p></div><span id="station-count" class="quiet-label"></span></div><div id="stations" class="station-list"></div><button type="button" id="more-stations" class="text-button" hidden>展开更多站点</button></section>
+    <section id="history" class="panel history-panel"><div class="panel-heading"><div><h2>每一次充电</h2><p id="history-caption">—</p></div><button type="button" id="export" class="secondary-button">导出记录 <span aria-hidden="true">↓</span></button></div><div class="history-controls"><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索站点或平台" aria-label="搜索充电站点或平台"></label><label class="station-select"><span class="visually-hidden">充电站筛选</span><select id="station-filter" aria-label="筛选充电站"><option value="">全部充电站</option></select></label><label class="station-select"><span class="visually-hidden">排序方式</span><select id="sort" aria-label="记录排序"><option value="recent">最近充电优先</option><option value="price">实付电价从低到高</option><option value="amount">单次花费从低到高</option></select></label></div><div class="table-wrap"><table><thead><tr><th scope="col">日期 / 充电站</th><th scope="col">充电量</th><th scope="col">实付花费</th><th scope="col">实付电价</th><th scope="col">电量变化</th><th scope="col">时长</th></tr></thead><tbody id="records"></tbody></table></div><p id="empty" class="empty" hidden>这个范围还没有充电记录。</p><div class="history-foot"><span id="record-count" role="status" aria-live="polite"></span><button type="button" id="more-records" class="secondary-button" hidden>查看更多记录</button></div></section>
+    <details class="method"><summary>数据说明 <span id="data-note"></span></summary><div><p>花费为优惠后的实际支付金额；平均电价按总实付除以总电量计算，不取单次电价的简单平均。优惠金额单独展示。</p><p>充电量是桩端记录值；电池百分比是车辆 SOC 读数。当前页面不使用两者的差额判断充电效率或电池健康，也不以每次补电直接推断行驶电耗。</p><p id="exclusion-note"></p><p>少量已确认的同站名称会合并展示，原始记录保留原名称。导出内容与当前记录筛选一致。</p></div></details>
+    <footer><span>WAYLEN · 充能有数</span><span id="archive-caption">—</span></footer>
+    <noscript><p class="empty">请启用浏览器 JavaScript 以查看交互账本。</p></noscript>
+  </main>
+  <!-- INLINE_DATA -->
+  <!-- INLINE_APP -->
+</body>
+</html>

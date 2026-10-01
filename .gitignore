@@ -12,4 +12,7 @@ tunnel_url.txt
 
 # Python
 __pycache__/
-*.pyc.ssh-test/
+*.pyc
+.ssh-test/
+.github_token
+.env

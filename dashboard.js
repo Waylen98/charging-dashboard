@@ -94,7 +94,7 @@
     $('empty').hidden=rows.length>0;$('more-records').hidden=rows.length<=limit;$('more-records').textContent=`查看更多 · 还有 ${Math.max(0,rows.length-limit)} 条`;
     $('record-count').textContent=rows.length?`显示 ${Math.min(limit,rows.length)} / ${rows.length} 条记录`:'0 条记录';
     $('history-caption').textContent=`${selectedTitle()} · ${rows.length} 次充电 · 实付 ¥${fmt(sum(rows,'amount'))}`;
-    $('export').disabled=rows.length===0;
+    updateExport(rows);
   }
   function render(resetStations=false){if(resetStations)updateStationOptions();updateOverview();updateChart();updateStations();updateRecords();}
   $('period').addEventListener('change',()=>{period=$('period').value;limit=12;stationsExpanded=false;updateUrl();render(true);});
@@ -102,12 +102,14 @@
   for(const id of ['search','station-filter','sort'])$(id).addEventListener(id==='search'?'input':'change',()=>{limit=12;updateRecords();});
   $('more-records').addEventListener('click',()=>{limit+=12;updateRecords();});$('more-stations').addEventListener('click',()=>{stationsExpanded=!stationsExpanded;updateStations();});
   let resizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(updateChart);});
-  $('export').addEventListener('click',()=>{
+  function updateExport(records){
     const escaped=value=>`"${String(value ?? '').replaceAll('"','""').replace(/^[=+@\-]/,"'$&")}"`;
     const header=['日期','充电站','原始站名','电量(kWh)','实付(元)','优惠(元)','实付单价(元/度)','起始SOC(%)','结束SOC(%)','时长(分钟)','里程(km)','平台'];
-    const rows=filteredRecords().map(r=>[r.date,r.station,r.original_station,r.kwh,fmt(r.amount),r.coupon,fmt(r.unit_price),r.start_soc,r.end_soc,r.duration_min,r.mileage,r.platform]);
-    const csv='\uFEFF'+[header,...rows].map(row=>row.map(escaped).join(',')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const anchor=el('a');anchor.href=url;anchor.download=`充电记录-${period}.csv`;document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
-  });
+    const rows=records.map(r=>[r.date,r.station,r.original_station,r.kwh,fmt(r.amount),r.coupon,fmt(r.unit_price),r.start_soc,r.end_soc,r.duration_min,r.mileage,r.platform]);
+    const csv='\uFEFF'+[header,...rows].map(row=>row.map(escaped).join(',')).join('\r\n');
+    const anchor=$('export');anchor.download=`充电记录-${period}.csv`;anchor.setAttribute('aria-disabled',String(records.length===0));
+    if(records.length)anchor.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);else anchor.removeAttribute('href');
+  }
   $('archive-caption').textContent=all.length?`${all[0].date} 起 · 共 ${all.length} 次充电`:'等待第一条充电记录';
   $('data-note').textContent=all.length?`最近记录 ${all.at(-1).date}`:'';
   const excluded=data.excluded||{};$('exclusion-note').textContent=`统计已排除 ${excluded.test||0} 条测试记录${excluded.invalid?`及 ${excluded.invalid} 条无效记录`:''}，原始数据保留。`;

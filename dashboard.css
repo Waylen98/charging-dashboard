@@ -5,3 +5,5 @@
 
 /* Reading sizes for record content and secondary labels. */
 .panel-heading p,.metric-help,.expense-foot,.latest-platform,.quiet-label,.trend-foot,.station-meta,.history-foot{font-size:11px}.row-station,table,.station-name,.search-box input,.station-select select,.secondary-button{font-size:12px}.row-date,.row-soc{font-size:11px}.panel-heading h2{font-size:16px}@media(max-width:700px){.panel-heading p,.metric-help,.latest-platform,.quiet-label,.trend-foot,.station-meta,.history-foot{font-size:10px}.row-station,.station-name{font-size:13px}.panel-heading h2{font-size:15px}.expense-foot{font-size:11px}td:before{font-size:10px}.row-soc{font-size:12px}}
+ #export { text-decoration:none; display:inline-flex; align-items:center; gap:6px; }
+ #export[aria-disabled="true"] { opacity:.45; pointer-events:none; }

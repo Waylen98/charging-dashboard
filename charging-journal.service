@@ -1,0 +1,25 @@
+[Unit]
+Description=Waylen charging journal
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=charging
+Group=charging
+WorkingDirectory=/srv/charging/current
+EnvironmentFile=/srv/charging/charging.env
+ExecStart=/srv/charging/venv/bin/python /srv/charging/current/server.py
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/srv/charging
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=256M
+
+[Install]
+WantedBy=multi-user.target

@@ -12,10 +12,12 @@
   <header class="topbar"><div class="topbar-inner">
     <a class="brand" href="#main"><span class="brand-icon" aria-hidden="true">ϟ</span><span>充能有数<small>MY CHARGING JOURNAL</small></span></a>
     <nav aria-label="页面导航"><a href="#main" class="nav-active">概览</a><a href="#history">充电记录</a></nav>
-    <span class="vehicle"><span aria-hidden="true" class="status-dot"></span>海狮 05 EV</span>
+    <span class="vehicle">海狮 05 EV</span><a class="primary-button add-record" href="/admin/">＋ 新增记录</a>
   </div></header>
   <main id="main" class="wrap">
     <section class="page-heading"><div><p class="eyebrow">一程一记 · 日常用车</p><h1>每一次充电，都有数。</h1><p class="subtitle">看清花费，记住每一程。</p></div><label class="period-control">统计范围<select id="period" aria-label="统计月份"></select></label></section>
+    <div class="sync-bar"><span id="sync-status" role="status" aria-live="polite">正在连接记录…</span><button type="button" id="sync-now" class="text-button">刷新数据 ↻</button></div>
+    <p id="added-note" class="entry-notice" hidden>新记录已保存，账本已更新。</p>
     <section class="overview" aria-label="充电概览">
       <article class="expense-card"><div class="card-top"><span id="expense-label">实付花费</span><span class="expense-symbol" aria-hidden="true">↗</span></div><p class="main-amount"><span>¥</span><strong id="expense">—</strong></p><div class="expense-foot"><span id="expense-caption">正在读取记录</span><span id="coupon-caption"></span></div></article>
       <article class="metric-card"><span class="metric-icon" aria-hidden="true">¥</span><p class="metric-label">平均实付电价</p><p class="metric-value"><strong id="price">—</strong><span>元 / 度</span></p><p class="metric-help">总实付 ÷ 总充电量</p></article>

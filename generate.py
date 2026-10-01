@@ -10,7 +10,7 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 DATA_PATH = BASE / "charging_records.json"
 OUTPUT_PATH = BASE / "index.html"
-VERSION = "2.0.0"
+VERSION = "3.0.0"
 ALIASES = {
     "莲城充电-体育中心二期": "莲城充电·体育中心二期",
     "莲城充电-体育中心二期充电站": "莲城充电·体育中心二期",

@@ -1,7 +1,8 @@
 (() => {
   'use strict';
-  const data = JSON.parse(document.getElementById('charging-data').textContent);
-  const all = data.records;
+  if(location.hostname.endsWith('.pages.dev')){location.replace('https://charging.waylenlifeos.dpdns.org/'+location.search+location.hash);return;}
+  let data = JSON.parse(document.getElementById('charging-data').textContent);
+  let all = data.records;
   const $ = id => document.getElementById(id);
   const fmt = (n, places = 2) => n == null ? '—' : Number(n).toLocaleString('zh-CN', {minimumFractionDigits:places, maximumFractionDigits:places});
   const sum = (rows, key) => rows.reduce((total, row) => total + (row[key] || 0), 0);
@@ -9,15 +10,20 @@
   const el = (tag, cls, text) => {const node = document.createElement(tag); if(cls)node.className=cls; if(text != null)node.textContent=text; return node;};
   const svgNS = 'http://www.w3.org/2000/svg';
   const svgEl = (tag, attrs, text) => {const node=document.createElementNS(svgNS,tag); for(const [key,value] of Object.entries(attrs || {}))node.setAttribute(key,value);if(text!=null)node.textContent=text;return node;};
-  const monthValues = [...new Set(all.map(r=>r.date.slice(0,7)))].sort();
-  const monthGroups = monthValues.map(month=>{const rows=all.filter(r=>r.date.startsWith(month));return {month,amount:sum(rows,'amount'),price:sum(rows,'amount')/sum(rows,'kwh'),count:rows.length};});
+  let monthValues = [...new Set(all.map(r=>r.date.slice(0,7)))].sort();
+  let monthGroups = monthValues.map(month=>{const rows=all.filter(r=>r.date.startsWith(month));return {month,amount:sum(rows,'amount'),price:sum(rows,'amount')/sum(rows,'kwh'),count:rows.length};});
   let period = monthValues.at(-1) || 'all', metric='amount', limit=12, stationsExpanded=false;
   const params = new URLSearchParams(location.search);
+  let followLatest=!params.has('month');
+  $('added-note').hidden=params.get('added')!=='1';
   if(params.get('month') === 'all' || monthValues.includes(params.get('month'))) period=params.get('month');
-  $('period').append(el('option','', '全部记录'));
+  function updatePeriodOptions(){
+  $('period').replaceChildren();$('period').append(el('option','', '全部记录'));
   $('period').firstElementChild.value='all';
   for(const month of [...monthValues].reverse()){const opt=el('option','',monthName(month));opt.value=month;$('period').append(opt);}
   $('period').value=period;
+  }
+  updatePeriodOptions();
   const selection = () => period==='all' ? all : all.filter(r=>r.date.startsWith(period));
   const summary = rows => ({amount:sum(rows,'amount'),kwh:sum(rows,'kwh'),coupon:sum(rows,'coupon'),count:rows.length,price:rows.length?sum(rows,'amount')/sum(rows,'kwh'):null});
   const selectedTitle = () => period==='all'?'全部记录':monthName(period);
@@ -65,7 +71,7 @@
       group.style.cursor='pointer';group.append(svgEl('rect',{x:x-barWidth/2,y:top+chartH-h,width:barWidth,height:Math.max(h,2),rx:5,fill:active?'#285c7d':'#dfe9f0'}));
       group.append(svgEl('text',{x,y:top+chartH-h-7,'text-anchor':'middle',fill:active?'#395b73':'#95a9b7','font-size':10},fmt(value,metric==='amount'?0:2)));
       group.append(svgEl('text',{x,y:height-9,'text-anchor':'middle',fill:active?'#647f92':'#98a8b3','font-size':10},`${Number(g.month.slice(5))}月`));
-      const select=()=>{period=g.month;$('period').value=period;limit=12;stationsExpanded=false;updateUrl();render(true);};
+      const select=()=>{followLatest=false;period=g.month;$('period').value=period;limit=12;stationsExpanded=false;updateUrl();render(true);};
       group.addEventListener('click',select);group.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select();}});svg.append(group);
     }
     $('trend').setAttribute('aria-label',`月度${metric==='amount'?'实付花费':'平均实付电价'}：${groups.map(g=>`${monthName(g.month)} ${fmt(g[metric])}`).join('；')}`);
@@ -97,7 +103,7 @@
     updateExport(rows);
   }
   function render(resetStations=false){if(resetStations)updateStationOptions();updateOverview();updateChart();updateStations();updateRecords();}
-  $('period').addEventListener('change',()=>{period=$('period').value;limit=12;stationsExpanded=false;updateUrl();render(true);});
+  $('period').addEventListener('change',()=>{followLatest=false;period=$('period').value;limit=12;stationsExpanded=false;updateUrl();render(true);});
   $('trend-spend').addEventListener('click',()=>{metric='amount';updateChart();});$('trend-price').addEventListener('click',()=>{metric='price';updateChart();});
   for(const id of ['search','station-filter','sort'])$(id).addEventListener(id==='search'?'input':'change',()=>{limit=12;updateRecords();});
   $('more-records').addEventListener('click',()=>{limit+=12;updateRecords();});$('more-stations').addEventListener('click',()=>{stationsExpanded=!stationsExpanded;updateStations();});
@@ -110,8 +116,34 @@
     const anchor=$('export');anchor.download=`充电记录-${period}.csv`;anchor.setAttribute('aria-disabled',String(records.length===0));
     if(records.length)anchor.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);else anchor.removeAttribute('href');
   }
+  function updateNotes(){
   $('archive-caption').textContent=all.length?`${all[0].date} 起 · 共 ${all.length} 次充电`:'等待第一条充电记录';
   $('data-note').textContent=all.length?`最近记录 ${all.at(-1).date}`:'';
   const excluded=data.excluded||{};$('exclusion-note').textContent=`统计已排除 ${excluded.test||0} 条测试记录${excluded.invalid?`及 ${excluded.invalid} 条无效记录`:''}，原始数据保留。`;
+  }
+  updateNotes();
   render(true);
+  let etag='',syncing=false;
+  async function refresh(){
+    if(syncing)return;syncing=true;$('sync-now').disabled=true;
+    try{
+      const res=await fetch('/api/records',{cache:'no-store',headers:etag?{'If-None-Match':etag}:{},signal:AbortSignal.timeout(15000)});
+      if(res.status!==304){
+        if(!res.ok)throw Error();const fresh=await res.json();if(!Array.isArray(fresh.records))throw Error();
+        if(JSON.stringify(fresh.records)!==JSON.stringify(all)||JSON.stringify(fresh.excluded)!==JSON.stringify(data.excluded)){
+          data=fresh;all=fresh.records;monthValues=[...new Set(all.map(r=>r.date.slice(0,7)))].sort();
+          monthGroups=monthValues.map(month=>{const rows=all.filter(r=>r.date.startsWith(month));return {month,amount:sum(rows,'amount'),price:sum(rows,'amount')/sum(rows,'kwh'),count:rows.length};});
+          if(followLatest)period=monthValues.at(-1)||'all';else if(period!=='all'&&!monthValues.includes(period))period='all';
+          updatePeriodOptions();updateNotes();render(true);
+        }
+        etag=res.headers.get('ETag')||'';
+      }
+      $('sync-status').textContent='已同步 · 每 10 秒自动检查';$('sync-status').classList.remove('sync-offline');
+    }catch{$('sync-status').textContent='暂时无法同步 · 显示上次记录';$('sync-status').classList.add('sync-offline');}
+    finally{syncing=false;$('sync-now').disabled=false;}
+  }
+  $('sync-now').addEventListener('click',refresh);
+  window.addEventListener('online',refresh);window.addEventListener('focus',refresh);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refresh();});
+  setInterval(()=>{if(!document.hidden)void refresh();},10000);void refresh();
 })();

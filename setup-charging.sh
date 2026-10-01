@@ -7,6 +7,9 @@ PUBKEY="${1:?用法: sudo bash setup-charging.sh '<WorkBuddy公钥>'}"
 CHARGING_USER="charging"
 CHARGING_DIR="/srv/charging"
 
+# 初次安装旧上传管线专用；动态版按 README 的版本目录发布，不能覆盖 current。
+[ ! -e "$CHARGING_DIR/current" ] || { echo "动态服务已安装，请按 README 更新版本目录。"; exit 1; }
+
 # 0. 依赖检查
 command -v useradd >/dev/null || { echo "ERROR: useradd 不可用"; exit 1; }
 [ -f /home/lifeos/charging/receive.py ] || { echo "ERROR: /home/lifeos/charging/receive.py 不存在，先由 lifeos 部署"; exit 1; }
@@ -52,4 +55,4 @@ ls -la "$CHARGING_DIR"
 grep -c "command=" "$CHARGING_DIR/.ssh/authorized_keys" | xargs echo "forced command 条数:"
 
 echo "安装完成。WorkBuddy 连接方式:"
-echo "  ssh -i <私钥> charging@106.55.45.173   （stdin 传 JSON，自动执行 receive.py）"
+echo "  ssh -i <私钥> charging@203.195.191.229   （stdin 传 JSON，自动执行 receive.py）"

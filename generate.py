@@ -10,7 +10,7 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 DATA_PATH = BASE / "charging_records.json"
 OUTPUT_PATH = BASE / "index.html"
-VERSION = "3.0.0"
+VERSION = "3.1.0"
 ALIASES = {
     "莲城充电-体育中心二期": "莲城充电·体育中心二期",
     "莲城充电-体育中心二期充电站": "莲城充电·体育中心二期",
@@ -71,6 +71,7 @@ def load_records(path):
         mileage = number(item.get("mileage"))
         coupon = number(item.get("coupon"))
         records.append({
+            "id": item.get("_id") if re.fullmatch(r"[a-f0-9]{32}", str(item.get("_id", ""))) else None,
             "date": value, "station": station, "original_station": original,
             "kwh": kwh, "amount": amount, "coupon": max(coupon or 0, 0),
             "unit_price": amount / kwh, "start_soc": start, "end_soc": end,

@@ -39,6 +39,15 @@ def normalize(raw):
 def same(a,b):
     if a.get('order_id') and b.get('order_id'): return str(a['order_id'])==str(b['order_id'])
     return (a.get('date'),a.get('kwh'),a.get('amount'))==(b.get('date'),b.get('kwh'),b.get('amount'))
+
+def matches(record,incoming):
+    return same(record,incoming) or any(same(entry['before'],incoming) for entry in record.get('_history',[]))
+
+def revision(record):
+    return hashlib.sha256(json.dumps(record,sort_keys=True,ensure_ascii=False,allow_nan=False).encode()).hexdigest()
+
+def request_hash(record):
+    return hashlib.sha256(json.dumps(record,sort_keys=True,ensure_ascii=False,allow_nan=False).encode()).hexdigest()
 def atomic_write(path,content):
     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
     fd,name=tempfile.mkstemp(prefix='.'+path.name+'-',dir=path.parent)
@@ -78,7 +87,7 @@ class RecordStore:
         if self.path.exists():
             stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')+'-'+uuid.uuid4().hex[:8]+'.json'
             atomic_write(self.directory/'backups'/'records'/stamp,self.path.read_text(encoding='utf-8-sig'))
-        records.sort(key=lambda r:str(r.get('date','')))
+        records.sort(key=lambda r:str(r.get('date','')) if isinstance(r,dict) else '')
         atomic_write(self.path,json.dumps(records,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
     def add(self,raw,request_id=None,upsert=False):
         record=normalize(raw);digest=hashlib.sha256(json.dumps(record,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
@@ -89,10 +98,13 @@ class RecordStore:
             if previous:
                 if previous.get('_request_hash')!=digest: raise StoreError('REQUEST_CHANGED','这次请求的内容发生变化，请重新保存。',409)
                 return {'status':'ok','action':'no-change','date':record['date'],'records':len(records)}
-            existing=next((r for r in records if same(r,record)),None)
+            existing=next((r for r in records if isinstance(r,dict) and matches(r,record)),None)
             if existing is not None:
                 if not upsert: raise StoreError('DUPLICATE_RECORD','已有相同日期、电量和金额或订单号的记录，请先在充电记录中核对。',409)
-                updated={**existing,**record}
+                # Re-uploaded screenshots may enrich a corrected record, but never undo
+                # fields explicitly changed or cleared by the owner.
+                protected=set(existing.get('_edited_fields',[]))
+                updated={**existing,**{k:v for k,v in record.items() if k not in protected}}
                 if updated==existing: return {'status':'ok','action':'no-change','date':record['date'],'records':len(records)}
                 records[records.index(existing)]=updated;action='updated'
             else:
@@ -109,10 +121,51 @@ class RecordStore:
                 if not isinstance(raw,dict): continue
                 try: record=normalize(raw)
                 except StoreError: continue
-                if not any(same(r,record) for r in records):
+                if not any(isinstance(r,dict) and matches(r,record) for r in records):
                     for key in ('is_test','record_type'):
                         if key in raw: record[key]=raw[key]
+                    record['_id']=uuid.uuid4().hex
                     records.append(record);count+=1
             if count: self.write(records)
             return count
     def export(self): return [{k:v for k,v in r.items() if not k.startswith('_')} for r in self.read()]
+    def ensure_ids(self):
+        with self.locked():
+            records=self.read();ids=set();changed=False
+            for row in records:
+                if not isinstance(row,dict): continue
+                identity=row.get('_id')
+                if not isinstance(identity,str) or not re.fullmatch(r'[a-f0-9]{32}',identity) or identity in ids:
+                    row['_id']=uuid.uuid4().hex;changed=True
+                ids.add(row['_id'])
+            if changed: self.write(records)
+    def detail(self,identity):
+        with self.locked():
+            row=next((r for r in self.read() if isinstance(r,dict) and r.get('_id')==identity),None)
+            if row is None: raise StoreError('NOT_FOUND','这条记录不存在，请返回账本刷新。',404)
+            history=[{k:v for k,v in entry.items() if k not in ('request_id','request_hash')} for entry in row.get('_history',[])]
+            return {'id':identity,'record':{k:row[k] for k in FIELDS if k in row},'version':revision(row),'history':history}
+    def edit(self,identity,raw,expected_version,request_id):
+        record=normalize(raw);digest=request_hash(record)
+        if not isinstance(request_id,str) or not re.fullmatch(r'[a-zA-Z0-9-]{16,80}',request_id): raise StoreError('INVALID_REQUEST_ID','请求标识不正确。')
+        with self.locked():
+            records=self.read()
+            existing=next((r for r in records if isinstance(r,dict) and r.get('_id')==identity),None)
+            if existing is None: raise StoreError('NOT_FOUND','这条记录不存在，请返回账本刷新。',404)
+            previous=next((entry for entry in existing.get('_history',[]) if entry.get('request_id')==request_id),None)
+            if previous:
+                if previous['request_hash']!=digest: raise StoreError('REQUEST_CHANGED','这次请求内容已变化，请重新保存。',409)
+                return {'status':'ok','action':'no-change','date':existing['date'],'records':len(records)}
+            if not isinstance(expected_version,str) or revision(existing)!=expected_version: raise StoreError('RECORD_CONFLICT','记录已在别处更新。草稿已保留，请载入最新记录后再更正。',409)
+            if any(isinstance(row,dict) and row is not existing and matches(row,record) for row in records): raise StoreError('DUPLICATE_RECORD','更正结果与另一条记录重复，请先核对日期、电量、金额或订单号。',409)
+            before={k:existing[k] for k in FIELDS if k in existing}
+            changed=[k for k in FIELDS if before.get(k)!=record.get(k)]
+            if not changed: return {'status':'ok','action':'no-change','date':existing['date'],'records':len(records)}
+            entry={'at':datetime.now(timezone.utc).isoformat(),'before':before,'after':record,'changed':changed,'request_id':request_id,'request_hash':digest}
+            updated={k:v for k,v in existing.items() if k not in FIELDS}
+            updated.update(record)
+            updated['_history']=[*existing.get('_history',[]),entry]
+            updated['_edited_fields']=sorted(set(existing.get('_edited_fields',[]))|set(changed))
+            records[records.index(existing)]=updated
+            self.write(records)
+        return {'status':'ok','action':'updated','date':record['date'],'records':len(records)}

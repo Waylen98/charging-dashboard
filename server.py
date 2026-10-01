@@ -1,5 +1,5 @@
 """Dynamic charging journal; all writes require validated Cloudflare Access."""
-import argparse, hashlib, json, os, threading, time
+import argparse, hashlib, json, os, re, threading, time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -23,12 +23,13 @@ class AccessVerifier:
 
 def payload(store):
     records,excluded=generate.load_records(store.path)
-    data={'version':'3.0.0','records':records,'excluded':excluded,'live':True}
+    data={'version':'3.1.0','records':records,'excluded':excluded,'live':True}
     data['revision']=hashlib.sha256(generate.safe_json(data).encode()).hexdigest()[:16]
     return data
 
 def make_server(store,code_dir,origin,verify,port=43140,preview=False):
     code_dir=Path(code_dir)
+    store.ensure_ids()
     class Handler(BaseHTTPRequestHandler):
         server_version='ChargingJournal'
         def setup(self):
@@ -53,6 +54,8 @@ def make_server(store,code_dir,origin,verify,port=43140,preview=False):
                 if path.startswith('/admin'):
                     if not self.authorized(): self.send(401,{'error':'LOGIN_REQUIRED','message':'请登录后录入。'});return
                     if path=='/admin/api/session': self.send(200,{'authenticated':True,'preview':preview});return
+                    record_route=re.fullmatch(r'/admin/api/records/([a-f0-9]{32})',path)
+                    if record_route: self.send(200,store.detail(record_route[1]));return
                     if path in ('/admin','/admin/'):
                         page=(code_dir/'admin.html').read_text(encoding='utf-8').replace('<!-- INLINE_STYLE -->','<style>'+(code_dir/'dashboard.css').read_text(encoding='utf-8')+'</style>').replace('<!-- INLINE_APP -->','<script>'+(code_dir/'admin.js').read_text(encoding='utf-8')+'</script>')
                         self.send(200,page.encode(),'text/html; charset=utf-8');return
@@ -60,15 +63,18 @@ def make_server(store,code_dir,origin,verify,port=43140,preview=False):
                     data=payload(store);etag='"'+data['revision']+'"'
                     if self.headers.get('If-None-Match')==etag: self.send(304,b'',etag=etag)
                     else: self.send(200,data,etag=etag)
-                elif path=='/api/health': self.send(200,{'status':'ok','version':'3.0.0'})
+                elif path=='/api/health': self.send(200,{'status':'ok','version':'3.1.0'})
                 elif path=='/':
                     records,excluded=generate.load_records(store.path)
                     self.send(200,generate.render(records,excluded=excluded).encode(),'text/html; charset=utf-8')
                 else: self.send(404,{'error':'NOT_FOUND'})
+            except StoreError as error: self.send(error.status,{'error':error.code,'message':str(error)})
             except (ValueError,OSError) as error:
                 self.send(503,{'error':'READ_FAILED','message':'记录暂时无法读取，请稍后重试。'})
         def do_POST(self):
-            if urlsplit(self.path).path!='/admin/api/records': self.send(404,{'error':'NOT_FOUND'});return
+            path=urlsplit(self.path).path
+            edit_route=re.fullmatch(r'/admin/api/records/([a-f0-9]{32})',path)
+            if path!='/admin/api/records' and not edit_route: self.send(404,{'error':'NOT_FOUND'});return
             if not self.authorized(): self.send(401,{'error':'LOGIN_REQUIRED','message':'登录已过期，请重新登录后保存。'});return
             if self.headers.get('Origin')!=origin or self.headers.get('X-Charging-Request')!='manual-entry':
                 self.send(403,{'error':'ORIGIN_REJECTED','message':'请从充电网页录入。'});return
@@ -80,7 +86,10 @@ def make_server(store,code_dir,origin,verify,port=43140,preview=False):
                 record=json.loads(self.rfile.read(length))
                 key=self.headers.get('Idempotency-Key','')
                 if not key: raise StoreError('MISSING_REQUEST_ID','请求标识缺失，请刷新录入页。')
-                result=store.add(record,request_id=key)
+                if edit_route:
+                    if not isinstance(record,dict): raise StoreError('INVALID_RECORD','请提交有效的更正记录。')
+                    result=store.edit(edit_route[1],record.get('record'),record.get('version'),key)
+                else: result=store.add(record,request_id=key)
                 result['revision']=payload(store)['revision']
                 self.send(201 if result['action']=='added' else 200,result)
             except StoreError as error: self.send(error.status,{'error':error.code,'message':str(error)})
@@ -109,6 +118,6 @@ def main():
                 time.sleep(30)
         threading.Thread(target=backup_loop,daemon=True).start()
     server=make_server(store,Path(__file__).resolve().parent,origin,verifier,args.port,args.preview)
-    print(f'Charging journal 3.0.0 on 127.0.0.1:{args.port}',flush=True)
+    print(f'Charging journal 3.1.0 on 127.0.0.1:{args.port}',flush=True)
     server.serve_forever()
 if __name__=='__main__': main()

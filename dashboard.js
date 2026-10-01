@@ -92,7 +92,9 @@
   function updateRecords(){
     const rows=filteredRecords();$('records').replaceChildren();
     for(const row of rows.slice(0,limit)){
-      const tr=el('tr'),identity=el('td');identity.append(el('span','row-date',row.date),el('span','row-station',row.station));tr.append(identity);
+      const tr=el('tr'),identity=el('td');identity.append(el('span','row-date',row.date),el('span','row-station',row.station));
+      if(row.id){const edit=el('a','record-edit','更正 / 历史');edit.href='/admin/?edit='+encodeURIComponent(row.id);edit.setAttribute('aria-label',`更正 ${row.date} ${row.station} 的充电记录或查看修改历史`);identity.append(edit);}
+      tr.append(identity);
       for(const [label,value] of [['充电量',`${fmt(row.kwh,1)} 度`],['实付花费',`¥${fmt(row.amount)}`],['实付电价',`${fmt(row.unit_price)} 元/度`],['电量变化',row.start_soc!=null&&row.end_soc!=null?`${fmt(row.start_soc,0)}% → ${fmt(row.end_soc,0)}%`:'未记录'],['时长',row.duration_min!=null?`${fmt(row.duration_min,0)} 分钟`:'未记录']]){
         const cell=el('td',label==='实付花费'?'money':label==='电量变化'?'row-soc':'',value);cell.dataset.label=label;if(label==='实付花费'&&row.coupon>0)cell.append(el('span','coupon',`优惠 ¥${fmt(row.coupon,0)}`));tr.append(cell);
       }$('records').append(tr);

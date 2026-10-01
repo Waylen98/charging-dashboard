@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>新增充电记录 · 充能有数</title><!-- INLINE_STYLE --></head>
 <body class="entry-page"><header class="site-header"><a class="brand" href="/"><span class="brand-icon" aria-hidden="true">ϟ</span><span><strong>充能有数</strong><small>MY CHARGING JOURNAL</small></span></a><div class="entry-navigation"><a class="home-link" href="https://waylenlifeos.dpdns.org/">← 我的主页</a><a class="entry-back" href="/">返回账本 →</a></div></header>
-<main class="entry-main"><div class="entry-intro"><p class="eyebrow">一程一记 · 手动补录</p><h1>补上一笔，心里有数。</h1><p>没有截图也能记账。填写四项基本信息，其余可以留空。</p></div>
+<main class="entry-main"><div class="entry-intro"><p class="eyebrow" id="entry-eyebrow">一程一记 · 手动补录</p><h1 id="entry-heading">补上一笔，心里有数。</h1><p id="entry-description">没有截图也能记账。填写四项基本信息，其余可以留空。</p></div>
 <div id="entry-preview" class="entry-notice" hidden>当前为测试预览，填写的内容不会进入真实记录。</div>
 <section class="panel entry-panel"><form id="entry-form"><div class="entry-section-head"><h2>这次充电</h2><span>四项必填</span></div>
 <div class="entry-fields"><label>充电日期 <input name="date" id="entry-date" type="date" required></label><label>充电站 <input name="station" type="text" list="station-suggestions" placeholder="例如：莲城充电·体育中心二期" maxlength="200" required autocomplete="off"></label>
@@ -11,6 +11,8 @@
 <label>充电时长 <span class="entry-input-unit"><input name="duration_min" type="number" inputmode="numeric" min="1" max="1440" step="1" placeholder="例如 40"><i>分钟</i></span></label><label>优惠金额 <span class="entry-input-unit"><input name="coupon" type="number" inputmode="decimal" min="0" max="10000" step="0.01" placeholder="没有可留空"><i>元</i></span></label>
 <label>里程表读数 <span class="entry-input-unit"><input name="mileage" type="number" inputmode="numeric" min="0" max="1000000" step="1" placeholder="例如 5200"><i>公里</i></span></label><label>充电平台 <input name="platform" type="text" list="platform-suggestions" maxlength="80" placeholder="例如：小桔充电"></label><label class="entry-wide">订单号 <input name="order_id" type="text" maxlength="120" placeholder="可留空，有订单号更便于核对重复记录" autocomplete="off"></label></div></details>
 <div id="entry-price" class="entry-estimate" aria-live="polite">填入电量与金额后，可预览实付电价。</div><p id="entry-error" class="entry-error" role="alert" hidden></p>
+<button id="entry-reload" class="secondary-button" type="button" hidden>载入最新记录（替换当前草稿）</button>
 <div class="entry-actions"><p id="draft-note">填写内容会暂存到当前浏览器。</p><button id="entry-save" class="primary-button" type="submit" disabled>正在验证登录…</button></div>
-</form><div id="entry-success" class="entry-success" role="status" hidden><span class="entry-success-icon" aria-hidden="true">✓</span><h2>这笔充电，记好了。</h2><p>记录已保存到服务器，充电账本会自动同步。</p><div><a id="entry-view" class="primary-button" href="/">查看充电记录 →</a><button id="entry-another" class="secondary-button" type="button">再录一条</button></div></div></section>
+</form><div id="entry-success" class="entry-success" role="status" hidden><span class="entry-success-icon" aria-hidden="true">✓</span><h2 id="entry-success-heading">这笔充电，记好了。</h2><p>记录已保存到服务器，充电账本会自动同步。</p><div><a id="entry-view" class="primary-button" href="/">查看充电记录 →</a><button id="entry-another" class="secondary-button" type="button">再录一条</button></div></div></section>
+<details id="entry-history" class="panel correction-history" hidden><summary id="history-heading">修改历史</summary><p class="history-note">保留每次网页更正的前后值；原有记录已保留初始版本。</p><div id="history-list"></div></details>
 <p class="entry-footnote">保存时检查重复记录。原来的上传方式也会同步到这个账本。</p><datalist id="station-suggestions"></datalist><datalist id="platform-suggestions"></datalist></main><!-- INLINE_APP --></body></html>

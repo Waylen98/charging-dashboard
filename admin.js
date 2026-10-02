@@ -56,3 +56,6 @@ $('entry-reload').addEventListener('click',()=>{if(!busy&&editing)void loadEdit(
 $('entry-another').addEventListener('click',()=>{if(editing){location.assign('/admin/');return;}form.reset();$('entry-date').value=localDate;requestId=crypto.randomUUID();lastBody='';form.hidden=false;$('entry-success').hidden=true;error.hidden=true;$('draft-note').textContent='填写内容会暂存到当前浏览器。';estimate();form.elements.station.focus();});
 window.addEventListener('beforeunload',event=>{if(busy){event.preventDefault();event.returnValue='';}});
 })();
+
+document.addEventListener('click',event=>{document.querySelectorAll('details.space-switcher[open]').forEach(menu=>{if(!menu.contains(event.target))menu.open=false;});});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){document.querySelectorAll('details.space-switcher[open]').forEach(menu=>{menu.open=false;menu.querySelector('summary').focus();});}});

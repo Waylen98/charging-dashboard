@@ -125,7 +125,7 @@
   }
   updateNotes();
   render(true);
-  let etag='',syncing=false;
+  let etag='',syncing=false,lastSuccess=null;
   async function refresh(){
     if(syncing)return;syncing=true;$('sync-now').disabled=true;
     try{
@@ -140,8 +140,15 @@
         }
         etag=res.headers.get('ETag')||'';
       }
-      $('sync-status').textContent='已同步 · 每 10 秒自动检查';$('sync-status').classList.remove('sync-offline');
-    }catch{$('sync-status').textContent='暂时无法同步 · 显示上次记录';$('sync-status').classList.add('sync-offline');}
+      lastSuccess=new Date();$('sync-warning').hidden=true;
+      $('sync-status').textContent='已同步 · '+lastSuccess.toLocaleTimeString('zh-CN',{hour12:false});$('sync-status').classList.remove('sync-offline');
+      $('sync-now').textContent='刷新数据 ↻';
+    }catch{
+      $('sync-status').textContent='等待同步恢复';$('sync-status').classList.add('sync-offline');
+      $('sync-warning').hidden=false;
+      $('sync-warning-detail').textContent='当前展示'+(lastSuccess?'上次成功同步的记录。最后成功同步：'+lastSuccess.toLocaleString('zh-CN',{hour12:false})+'。':'打开页面时载入的记录。')+'连接恢复后会自动更新，月份和筛选会保留。';
+      $('sync-now').textContent='重新同步 ↻';
+    }
     finally{syncing=false;$('sync-now').disabled=false;}
   }
   $('sync-now').addEventListener('click',refresh);
@@ -149,3 +156,6 @@
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refresh();});
   setInterval(()=>{if(!document.hidden)void refresh();},10000);void refresh();
 })();
+
+document.addEventListener('click',event=>{document.querySelectorAll('details.space-switcher[open]').forEach(menu=>{if(!menu.contains(event.target))menu.open=false;});});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){document.querySelectorAll('details.space-switcher[open]').forEach(menu=>{menu.open=false;menu.querySelector('summary').focus();});}});

@@ -379,5 +379,14 @@
     "order_id": "test-conn-20260925-DELETE",
     "start_time": "00:00:00",
     "platform": "测试"
+  },
+  {
+    "date": "2026-09-25",
+    "station": "老家个人家充",
+    "kwh": 64,
+    "amount": 33.25,
+    "start_soc": 10,
+    "end_soc": 100,
+    "mileage": 6820
   }
 ]

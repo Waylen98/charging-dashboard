@@ -388,5 +388,19 @@
     "start_soc": 10,
     "end_soc": 100,
     "mileage": 6820
+  },
+  {
+    "date": "2026-10-05",
+    "station": "湘潭市岳塘区盘龙山庄充电站",
+    "kwh": 31.812,
+    "amount": 14.09,
+    "duration_min": 49,
+    "start_soc": 41,
+    "end_soc": 88,
+    "mileage": 7119,
+    "coupon": 5,
+    "order_id": "1014370017911714412001952",
+    "gun": "2118360103000059301",
+    "start_time": "12:22:32"
   }
 ]

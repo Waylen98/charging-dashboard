@@ -462,5 +462,15 @@
     "platform": "莲城充电",
     "gun": "20240701010019-A枪",
     "start_time": "12:30:00"
+  },
+  {
+    "date": "2026-11-14",
+    "station": "家里",
+    "kwh": 61.6,
+    "amount": 31.44,
+    "start_soc": 10,
+    "end_soc": 100,
+    "mileage": 8529,
+    "coupon": 0
   }
 ]

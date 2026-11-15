@@ -472,5 +472,20 @@
     "end_soc": 100,
     "mileage": 8529,
     "coupon": 0
+  },
+  {
+    "date": "2026-11-15",
+    "station": "莲城充电-妇幼充电站",
+    "kwh": 29.855,
+    "amount": 16.71,
+    "duration_min": 32,
+    "start_soc": 31,
+    "end_soc": 76,
+    "mileage": 8809,
+    "coupon": 0,
+    "order_id": "20240501040004012026111512143590",
+    "platform": "莲城充电",
+    "gun": "20240501040004-A枪",
+    "start_time": "12:14:38"
   }
 ]
